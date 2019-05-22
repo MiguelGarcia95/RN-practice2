@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, TextInput, Button} from 'react-native';
 
+import ListItem from './src/components/ListItem';
+
 export default class App extends Component {
   state = {
     placeName: '',
@@ -25,7 +27,7 @@ export default class App extends Component {
   }
 
   render() {
-    const places = this.state.places.map(place => <Text key={place}>{place}</Text>)
+    const places = this.state.places.map(place => <ListItem key={place} placeName={place} />)
     return (
       <View style={styles.container}>
         <View style={styles.inputContainer}>
