@@ -39,7 +39,7 @@ export default class App extends Component {
           />
           <Button title='Add' style={styles.placeButton} onPress={this.placeSubmitHandler} />
         </View>
-        <View>
+        <View style={styles.listContainer}>
           {places}
         </View>
       </View>
@@ -67,5 +67,8 @@ const styles = StyleSheet.create({
   },
   placeButton: {
     width: '30%',
+  },
+  listContainer: {
+    width: '100%'
   },
 });
