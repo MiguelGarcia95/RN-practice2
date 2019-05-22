@@ -15,13 +15,13 @@ export default class App extends Component {
       <View style={styles.container}>
         <View style={styles.inputContainer}>
           <TextInput 
-            style={{width: 300}}
+            style={styles.placeInput}
             placeholder='Awesome place.'
             value={this.state.placeName} 
             onChangeText={this.placeNameChangedHandler} 
           />
 
-          <Button title='Add' />
+          <Button title='Add' style={styles.placeButton} />
         </View>
       </View>
     );
@@ -37,8 +37,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   inputContainer: {
-    flex: 1,
+    // flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  placeInput: {
+    width: '70%',
+  },
+  placeButton: {
+    width: '30%',
   },
 });
