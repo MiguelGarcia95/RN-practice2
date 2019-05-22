@@ -7,7 +7,7 @@ export default class App extends Component {
   }
 
   placeNameChangedHandler = (event) => {
-    alert(event);
+    this.setState({placeName: event});
   }
 
   render() {
