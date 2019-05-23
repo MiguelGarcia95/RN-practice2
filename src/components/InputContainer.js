@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, TextInput, StyleSheet } from 'react-native'
 
 const InputContainer = ({placeName, placeNameChangedHandler, placeSubmitHandler}) => {
   return (
