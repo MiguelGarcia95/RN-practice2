@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, Image, Modal, Button, StyleSheet } from 'react-native'
 
-const PlaceModal = ({place}) => {
+const PlaceModal = ({place, onItemDelete, onModalClose}) => {
   let modalContent = null;
   if (place) {
     modalContent = (
@@ -16,11 +16,11 @@ const PlaceModal = ({place}) => {
       <View style={styles.modalContainer}> 
         {modalContent}
         <View> 
-          <Button title='Delete' color='red' />
-          <Button title='Close' /> 
+          <Button title='Delete' color='red' onPress={() => onItemDelete(place.key)} />
+          <Button title='Close' onPress={onModalClose} /> 
         </View>
       </View> 
-    </Modal>
+    </Modal> 
   )
 }
 

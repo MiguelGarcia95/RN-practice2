@@ -57,11 +57,17 @@ export default class App extends Component {
     }); 
   }
 
+  modalClose = () => {
+    this.setState({selectedPlace: null})
+  }
+
+
+
   render() {
     const {selectedPlace, placeName, places} = this.state;
     return (
       <View style={styles.container}>
-        <PlaceModal place={selectedPlace}  />
+        <PlaceModal place={selectedPlace} onModalClose={this.modalClose} onItemDelete={this.deletePlace} />
         <InputContainer 
           placeName={placeName} 
           placeNameChangedHandler={this.placeNameChangedHandler}  
