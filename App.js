@@ -54,10 +54,10 @@ export default class App extends Component {
           return place.key !== key;
         })
       }
-    });
+    }); 
   }
 
-  render() {
+  render() { 
     const {selectedPlace, placeName, places} = this.state;
     return (
       <View style={styles.container}>
