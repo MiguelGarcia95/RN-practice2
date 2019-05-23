@@ -3,7 +3,11 @@ import {StyleSheet, View } from 'react-native';
 import ListItem from './ListItem';
 
 displayList = places => {
-  return places.map(place => <ListItem key={place} placeName={place} />)
+  return places.map(place => (
+    <ListItem 
+      key={place} placeName={place} onItemPressed={() =>alert('itemPressed')} />
+    )
+  ) 
 }
 
 const List = ({places}) => {
