@@ -20,7 +20,7 @@ export default class App extends Component {
     if (this.state.placeName) {
       this.setState(prevState => {
         return {
-          places: prevState.places.concat(prevState.placeName),
+          places: prevState.places.concat({key: Math.random() , value: prevState.placeName}),
           placeName: ''
         }
       });
