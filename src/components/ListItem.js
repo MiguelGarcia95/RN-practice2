@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     width: '100%',
     padding: 10,
     backgroundColor: '#eee',
+    marginBottom: 5
   },
   listItemText: {
 
