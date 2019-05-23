@@ -52,7 +52,8 @@ export default class App extends Component {
       return {
         places: prevState.places.filter(place => {
           return place.key !== key;
-        })
+        }),
+        selectedPlace: null
       }
     }); 
   }
