@@ -23,14 +23,14 @@ export default class App extends Component {
       this.setState(prevState => {
         return {
           places: prevState.places.concat({
-            key: Math.random(), 
+            key: `${Math.random()}`, 
             name: prevState.placeName,
             image: {
               uri: 'https://cdn.mos.cms.futurecdn.net/uxyTQorrAz7z8KcVZzPjDe.jpg'
             }
           }),
           placeName: ''
-        }
+        } 
       });
     } else {
       return;

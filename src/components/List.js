@@ -8,7 +8,7 @@ const List = ({places, onItemSelected}) => {
       style={styles.listContainer} 
       data={places}
       renderItem={(info) => (
-        <ListItem 
+        <ListItem
           placeName={info.item.name} 
           placeImage={info.item.image} 
           onItemPressed={() => onItemSelected(info.item.key)} 
