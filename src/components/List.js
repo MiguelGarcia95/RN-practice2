@@ -9,8 +9,8 @@ const List = ({places, deletePlace}) => {
       data={places}
       renderItem={(info) => (
         <ListItem 
-          placeName={info.value} 
-          onItemPressed={() => deletePlace(info.key)} 
+          placeName={info.item.value} 
+          onItemPressed={() => deletePlace(info.item.key)} 
         />
       )}
     />
