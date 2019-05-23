@@ -23,7 +23,7 @@ export default class App extends Component {
         return {
           places: prevState.places.concat({
             key: Math.random(), 
-            value: prevState.placeName,
+            name: prevState.placeName,
             image: placeImage,
           }),
           placeName: ''
