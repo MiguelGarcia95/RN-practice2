@@ -2,12 +2,14 @@ import React from 'react';
 import {StyleSheet, View } from 'react-native';
 import ListItem from './ListItem';
 
-const List = ({places}) => {
-  const list = places.map(place => <ListItem key={place} placeName={place} />)
+displayList = places => {
+  return places.map(place => <ListItem key={place} placeName={place} />)
+}
 
+const List = ({places}) => {
   return (
     <View style={styles.listContainer}>
-      {list}
+      {displayList(places)}
     </View>
   )
 }
