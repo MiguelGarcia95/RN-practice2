@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 
 import List from './src/components/List';
 import InputContainer from './src/components/InputContainer';
+import PlaceModal from './src/components/PlaceModal';
 import {addPlace, deletePlace, selectPlace, unselectPlace} from './src/store/actions';
 
 class App extends Component {
@@ -99,8 +100,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAddPlace: () => dispatch(),
+    onAddPlace: (placeName) => dispatch(addPlace(placeName)),
+    onPlaceDelete: () => dispatch(deletePlace()),
+    onPlaceSelect: (key) => dispatch(selectPlace(key)),
+    onPlaceUnselect: () => dispatch(unselectPlace()),
   }
 }
 
-export default connect()(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
