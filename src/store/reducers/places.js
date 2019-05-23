@@ -7,8 +7,17 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case value:
-      break;
+    case actionTypes.ADD_PLACE:
+      return {
+        ...state,
+        places: state.places.concat({
+          key: `${Math.random()}`, 
+          name: action.payload.placeName,
+          image: {
+            uri: 'https://cdn.mos.cms.futurecdn.net/uxyTQorrAz7z8KcVZzPjDe.jpg'
+          }
+        }),
+      }
     default:
       return state;
   }
