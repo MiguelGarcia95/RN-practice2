@@ -30,7 +30,10 @@ export default class App extends Component {
   }
 
   deletePlace = key => {
-    alert(key);
+    this.state.places.splice(key, 1)
+    this.setState({
+      places: this.state.places
+    })
   }
 
   render() {
