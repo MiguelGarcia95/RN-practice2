@@ -26,6 +26,13 @@ const reducer = (state = initialState, action) => {
         }),
         selectedPlace: null
       }
+    case actionTypes.SELECT_PLACE:
+      return {
+        ...state,
+        selectedPlace: state.places.find(place => {
+          return place.key === action.payload.placeKey
+        })
+      }
     default:
       return state;
   }
