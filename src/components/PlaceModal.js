@@ -6,20 +6,20 @@ const PlaceModal = ({place}) => {
   if (place) {
     modalContent = (
       <View>
-        <Image source={place.image} />
+        <Image source={place.image} style={styles.placeImage} />
         <Text>{place.name}</Text>
       </View>
     )
   }
   return (
-    <Modal visible={place !== null} >
+    <Modal visible={place !== null} animationType='slide' >
       <View style={styles.modalContainer}> 
         {modalContent}
         <View>
           <Button title='Delete' color='red' />
-          <Button title='Close' />
+          <Button title='Close' /> 
         </View>
-      </View>
+      </View> 
     </Modal>
   )
 }
@@ -27,6 +27,10 @@ const PlaceModal = ({place}) => {
 const styles = StyleSheet.create({
   modalContainer: {
     margin: 22
+  },
+  placeImage: {
+    width: '100%',
+    height: 200
   }
 })
 
