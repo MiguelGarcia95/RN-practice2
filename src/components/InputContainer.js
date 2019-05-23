@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, TextInput, StyleSheet, Button } from 'react-native'
 
-const InputContainer = ({placeName, placeNameChangedHandler, placeSubmitHandler}) => {
+const InputContainer = ({placeName, placeNameChangedHandler, placeAddedHandler}) => {
   return (
     <View style={styles.inputContainer}>
       <TextInput 
@@ -10,7 +10,7 @@ const InputContainer = ({placeName, placeNameChangedHandler, placeSubmitHandler}
         value={placeName} 
         onChangeText={placeNameChangedHandler} 
       />
-      <Button title='Add' style={styles.placeButton} onPress={placeSubmitHandler} />
+      <Button title='Add' style={styles.placeButton} onPress={placeAddedHandler} />
     </View>
   )
 }
