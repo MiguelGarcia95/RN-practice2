@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, View} from 'react-native';
-import placeImage from './src/assets/images/image_01.jpg';
+// import placeImage from './src/assets/images/image_01.jpg';
 
 import List from './src/components/List';
 import InputContainer from './src/components/InputContainer';
