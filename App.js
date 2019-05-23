@@ -9,6 +9,7 @@ export default class App extends Component {
   state = {
     placeName: '',
     places: [],
+    selectedPlace: null
   }
 
   placeNameChangedHandler = (event) => {
@@ -36,8 +37,14 @@ export default class App extends Component {
     }
   }
 
-  onItemSelected = key => {
-    
+  placeSelectedHandler = key => {
+    this.setState(prevState =>{
+      return {
+        selectedPlace: prevState.places.find(place => {
+          return place.key === key
+        })
+      }
+    })
   }
 
   deletePlace = key => {
@@ -53,13 +60,13 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <PlaceModal  />
+        {this.state.selectedPlace && <PlaceModal place={this.state.selectedPlace}  />}
         <InputContainer 
           placeName={this.state.placeName} 
           placeNameChangedHandler={this.placeNameChangedHandler}  
           placeAddedHandler={this.placeAddedHandler}
         />
-        <List places={this.state.places} onItemSelected={this.onItemSelected} />
+        <List places={this.state.places} onItemSelected={this.placeSelectedHandler} />
       </View>
     );
   }
