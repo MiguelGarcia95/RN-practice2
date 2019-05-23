@@ -1,12 +1,23 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Image, Modal, Button, StyleSheet } from 'react-native'
 
 const PlaceModal = () => {
   return (
-    <View>
-      <Text></Text>
-    </View>
+    <Modal>
+      <View>
+        <Image />
+        <Text></Text>
+        <View>
+          <Button />
+          <Button />
+        </View>
+      </View>
+    </Modal>
   )
 }
+
+const styles = StyleSheet.create({
+  
+})
 
 export default PlaceModal
