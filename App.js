@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 import List from './src/components/List';
 import InputContainer from './src/components/InputContainer';
-import PlaceModal from './src/components/PlaceModal';
+import {addPlace, deletePlace, selectPlace, unselectPlace} from './src/store/actions';
 
 class App extends Component {
   state = {
@@ -89,5 +89,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+
+const mapStateToProps = state => {
+  return {
+    places: state.places.places,
+    selectedPlace: state.places.selectedPlace
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onAddPlace: () => dispatch(),
+  }
+}
 
 export default connect()(App);
