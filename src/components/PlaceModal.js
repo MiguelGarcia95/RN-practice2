@@ -16,7 +16,7 @@ const PlaceModal = ({place, onItemDelete, onModalClose}) => {
       <View style={styles.modalContainer}> 
         {modalContent}
         <View> 
-          <Button title='Delete' color='red' onPress={() => onItemDelete(place.key)} />
+          <Button title='Delete' color='red' onPress={onItemDelete} />
           <Button title='Close' onPress={onModalClose} /> 
         </View>
       </View> 

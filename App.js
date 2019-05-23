@@ -45,11 +45,11 @@ export default class App extends Component {
     })
   }
 
-  deletePlace = key => {
+  deletePlace = () => {
     this.setState(prevState => {
       return {
         places: prevState.places.filter(place => {
-          return place.key !== key;
+          return place.key !== prevState.selectedPlace.key;
         }),
         selectedPlace: null
       }
