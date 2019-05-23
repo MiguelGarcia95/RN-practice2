@@ -20,55 +20,30 @@ class App extends Component {
 
   placeAddedHandler = () => {
     if (this.state.placeName) {
-      this.setState(prevState => {
-        return {
-          places: prevState.places.concat({
-            key: `${Math.random()}`, 
-            name: prevState.placeName,
-            image: {
-              uri: 'https://cdn.mos.cms.futurecdn.net/uxyTQorrAz7z8KcVZzPjDe.jpg'
-            }
-          }),
-          placeName: ''
-        } 
-      });
+      this.props.onAddPlace(this.state.placeName)
     } else {
       return;
     }
   }
 
-  placeSelectedHandler = key => {
-    this.setState(prevState =>{
-      return {
-        selectedPlace: prevState.places.find(place => {
-          return place.key === key
-        })
-      }
-    })
-  }
+  placeSelectedHandler = key => this.props.onPlaceSelect(key);
 
-  deletePlace = () => {
-    this.setState(prevState => {
-      return {
-        places: prevState.places.filter(place => {
-          return place.key !== prevState.selectedPlace.key;
-        }),
-        selectedPlace: null
-      }
-    }); 
-  }
+  placeDeleteHandler = () => this.props.onPlaceDelete();
 
-  modalClose = () => {
-    this.setState({selectedPlace: null})
-  }
+  placeUnselectedHandler = () => this.props.onPlaceUnselect();
 
 
 
   render() {
-    const {selectedPlace, placeName, places} = this.state;
+    const {placeName} = this.state;
+    const {selectedPlace, places} = this.props;
     return (
       <View style={styles.container}>
-        <PlaceModal place={selectedPlace} onModalClose={this.modalClose} onItemDelete={this.deletePlace} />
+        <PlaceModal 
+          place={selectedPlace} 
+          onModalClose={this.placeUnselectedHandler} 
+          onItemDelete={this.placeDeleteHandler} 
+        />
         <InputContainer 
           placeName={placeName} 
           placeNameChangedHandler={this.placeNameChangedHandler}  
