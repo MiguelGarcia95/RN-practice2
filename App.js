@@ -32,10 +32,13 @@ export default class App extends Component {
   }
 
   deletePlace = key => {
-    this.state.places.splice(key, 1)
-    this.setState({
-      places: this.state.places
-    })
+    this.setState(prevState => {
+      return {
+        places: prevState.places.filter(place => {
+          return place.key !== key;
+        })
+      }
+    });
   }
 
   render() {
