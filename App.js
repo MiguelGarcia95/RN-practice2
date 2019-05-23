@@ -32,7 +32,8 @@ export default class App extends Component {
       <View style={styles.container}>
         <InputContainer 
           placeName={this.state.placeName} 
-          onChangeText={this.placeNameChangedHandler}  
+          placeNameChangedHandler={this.placeNameChangedHandler}  
+          placeSubmitHandler={this.placeSubmitHandler}
         />
         <List places={this.state.places} />
       </View>

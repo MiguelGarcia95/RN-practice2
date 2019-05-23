@@ -1,16 +1,16 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
-const InputContainer = () => {
+const InputContainer = ({placeName, placeNameChangedHandler, placeSubmitHandler}) => {
   return (
     <View style={styles.inputContainer}>
       <TextInput 
         style={styles.placeInput}
         placeholder='Awesome place.'
-        value={this.state.placeName} 
-        onChangeText={this.placeNameChangedHandler} 
+        value={placeName} 
+        onChangeText={placeNameChangedHandler} 
       />
-      <Button title='Add' style={styles.placeButton} onPress={this.placeSubmitHandler} />
+      <Button title='Add' style={styles.placeButton} onPress={placeSubmitHandler} />
     </View>
   )
 }
