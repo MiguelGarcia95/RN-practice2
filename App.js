@@ -9,9 +9,7 @@ import {addPlace, deletePlace, selectPlace, unselectPlace} from './src/store/act
 
 class App extends Component {
   state = {
-    placeName: '',
-    places: [],
-    selectedPlace: null
+    placeName: ''
   }
 
   placeNameChangedHandler = (event) => {
@@ -20,7 +18,8 @@ class App extends Component {
 
   placeAddedHandler = () => {
     if (this.state.placeName) {
-      this.props.onAddPlace(this.state.placeName)
+      this.props.onAddPlace(this.state.placeName);
+      this.setState({placeName: ''});
     } else {
       return;
     }
