@@ -58,15 +58,16 @@ export default class App extends Component {
   }
 
   render() {
+    const {selectedPlace, placeName, places} = this.state;
     return (
       <View style={styles.container}>
-        {this.state.selectedPlace && <PlaceModal place={this.state.selectedPlace}  />}
+        {selectedPlace && <PlaceModal place={selectedPlace}  />}
         <InputContainer 
-          placeName={this.state.placeName} 
+          placeName={placeName} 
           placeNameChangedHandler={this.placeNameChangedHandler}  
           placeAddedHandler={this.placeAddedHandler}
         />
-        <List places={this.state.places} onItemSelected={this.placeSelectedHandler} />
+        <List places={places} onItemSelected={this.placeSelectedHandler} />
       </View>
     );
   }
