@@ -16,8 +16,6 @@ export default class App extends Component {
     this.setState({placeName: event});
   }
 
-
-
   placeAddedHandler = () => {
     if (this.state.placeName) {
       this.setState(prevState => {
