@@ -3,6 +3,7 @@ import {StyleSheet, View} from 'react-native';
 
 import List from './src/components/List';
 import InputContainer from './src/components/InputContainer';
+import PlaceModal from './src/components/PlaceModal';
 
 export default class App extends Component {
   state = {
@@ -35,6 +36,10 @@ export default class App extends Component {
     }
   }
 
+  onItemSelected = key => {
+    
+  }
+
   deletePlace = key => {
     this.setState(prevState => {
       return {
@@ -48,12 +53,13 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <PlaceModal  />
         <InputContainer 
           placeName={this.state.placeName} 
           placeNameChangedHandler={this.placeNameChangedHandler}  
           placeAddedHandler={this.placeAddedHandler}
         />
-        <List places={this.state.places} deletePlace={this.deletePlace} />
+        <List places={this.state.places} onItemSelected={this.onItemSelected} />
       </View>
     );
   }
