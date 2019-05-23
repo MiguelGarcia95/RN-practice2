@@ -1,14 +1,22 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React from 'react';
+import {StyleSheet, View } from 'react-native';
+import ListItem from './ListItem';
 
 const List = ({places}) => {
-  const places = this.state.places.map(place => <ListItem key={place} placeName={place} />)
+  const list = places.map(place => <ListItem key={place} placeName={place} />)
 
   return (
     <View style={styles.listContainer}>
-      {places}
+      {list}
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  listContainer: {
+    width: '100%'
+  },
+});
+
 
 export default List
