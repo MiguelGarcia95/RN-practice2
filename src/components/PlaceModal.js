@@ -12,7 +12,7 @@ const PlaceModal = ({place, onItemDelete, onModalClose}) => {
     )
   }
   return (
-    <Modal visible={place !== null} animationType='slide' >
+    <Modal onRequestClose={onModalClose} visible={place !== null} animationType='slide' >
       <View style={styles.modalContainer}> 
         {modalContent}
         <View> 
