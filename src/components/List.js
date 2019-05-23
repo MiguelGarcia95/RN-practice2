@@ -1,10 +1,12 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 
-const List = () => {
+const List = ({places}) => {
+  const places = this.state.places.map(place => <ListItem key={place} placeName={place} />)
+
   return (
-    <View>
-      <Text></Text>
+    <View style={styles.listContainer}>
+      {places}
     </View>
   )
 }
