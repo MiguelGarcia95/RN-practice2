@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import {StyleSheet, View} from 'react-native';
+import {connect} from 'react-redux';
 
 import List from './src/components/List';
 import InputContainer from './src/components/InputContainer';
 import PlaceModal from './src/components/PlaceModal';
 
-export default class App extends Component {
+class App extends Component {
   state = {
     placeName: '',
     places: [],
@@ -88,3 +89,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+
+export default connect()(App);
