@@ -12,12 +12,12 @@ const PlaceModal = ({place}) => {
     )
   }
   return (
-    <Modal>
-      <View>
+    <Modal visible={place !== null} >
+      <View style={styles.modalContainer}> 
         {modalContent}
         <View>
+          <Button title='Delete' color='red' />
           <Button title='Close' />
-          <Button title='Delete' />
         </View>
       </View>
     </Modal>
@@ -25,7 +25,9 @@ const PlaceModal = ({place}) => {
 }
 
 const styles = StyleSheet.create({
-
+  modalContainer: {
+    margin: 22
+  }
 })
 
 export default PlaceModal
