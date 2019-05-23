@@ -14,6 +14,8 @@ export default class App extends Component {
     this.setState({placeName: event});
   }
 
+
+
   placeSubmitHandler = () => {
     if (this.state.placeName) {
       this.setState(prevState => {
@@ -27,6 +29,10 @@ export default class App extends Component {
     }
   }
 
+  deletePlace = key => {
+    alert(key);
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -35,7 +41,7 @@ export default class App extends Component {
           placeNameChangedHandler={this.placeNameChangedHandler}  
           placeSubmitHandler={this.placeSubmitHandler}
         />
-        <List places={this.state.places} />
+        <List places={this.state.places} deletePlace={this.deletePlace} />
       </View>
     );
   }
