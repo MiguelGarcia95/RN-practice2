@@ -17,7 +17,7 @@ const startTabs = () => {
         {
           screen: "places.SharePlaceScreen",
           label: 'Share Place',
-          title: 'Share Place',
+          title: 'Share Place', 
           icon: sources[1],
         },
       ]
