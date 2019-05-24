@@ -83,4 +83,15 @@
 
 // export default connect(mapStateToProps, mapDispatchToProps)(App);
 
+import {Navigation} from 'react-native-navigation';
 
+import AuthScreen from './src/screens/Auth/Auth';
+
+Navigation.registerComponent("places.AuthScreen", () => AuthScreen);
+
+Navigation.startSingleScreenApp({
+  screen: {
+    screen: 'places.AuthScreen',
+    title: 'Login'
+  }
+})
