@@ -15,18 +15,4 @@ export const deletePlace = () => {
   };
 }
 
-export const selectPlace = key => {
-  return {
-    type: actionTypes.SELECT_PLACE,
-    payload: {
-      placeKey: key
-    }
-  };
-}
-
-export const unselectPlace = () => {
-  return {
-    type: actionTypes.UNSELECT_PLACE
-  };
-}
 
