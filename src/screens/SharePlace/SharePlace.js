@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {View, Text, TextInput, Button, StyleSheet, ScrollView} from 'react-native';
+import {View, Text, TextInput, Button, StyleSheet, ScrollView, Image} from 'react-native';
 import {addPlace} from '../../store/actions';
 
 import DefaultInput from '../../components/UI/DefaultInput/DefaultInput';
+import MainText from '../../components/UI/MainText/MainText';
+import HeadingText from '../../components/UI/HeadingText/HeadingText';
+import previewImage from '../../assets/images/background.jpg';
+
 // import InputContainer from '../../components/InputContainer/InputContainer';
 
 class SharePlaceScreen extends Component {
@@ -26,15 +30,17 @@ class SharePlaceScreen extends Component {
     return(
       <ScrollView>
         <View style={styles.container}> 
-          <Text>Share a Place with Us!</Text>
+          <MainText>
+            <HeadingText>Share a Place with Us!</HeadingText>
+          </MainText>
           <View style={styles.placeholder}>
-            <Text>Image PReview</Text>
+            <Image source={previewImage} style={styles.previewImage} />
           </View> 
           <View style={styles.button}>
             <Button title='pick image' />
           </View>
           <View style={styles.placeholder}>
-            <Text>Map</Text>
+            <MainText>Map</MainText>
           </View>
           <View style={styles.button}>
             <Button title='Locate me' />
@@ -61,6 +67,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#eee',
     width: '80%',
     height: 150,
+  },
+  previewImage: {
+    width: '100%',
+    height: '100%',
   },
   button: {
     margin: 5,
