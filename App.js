@@ -1,8 +1,3 @@
-// import React, {Component} from 'react';
-// import {StyleSheet, View} from 'react-native';
-
-// import List from './src/components/List';
-// import InputContainer from './src/components/InputContainer';
 // import PlaceModal from './src/components/PlaceModal';
 // import {addPlace, deletePlace, selectPlace, unselectPlace} from './src/store/actions';
 
