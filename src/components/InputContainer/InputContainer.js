@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import DefaultInput from '../UI/DefaultInput';
+import { View, TextInput, StyleSheet, Button } from 'react-native'
+import DefaultInput from '../UI/DefaultInput/DefaultInput';
 // import { Keyboard } from 'react-native';
 // Keyboard.dismiss();
 
@@ -12,7 +13,7 @@ class InputContainer extends Component {
     this.setState({placeName: event});
   }
 
-  render() {
+  render() { 
     return (
       <DefaultInput 
         placeholder='Place Name' 

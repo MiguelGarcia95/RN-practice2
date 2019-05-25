@@ -3,10 +3,11 @@ import {connect} from 'react-redux';
 import {View, Text, TextInput, Button, StyleSheet, ScrollView, Image} from 'react-native';
 import {addPlace} from '../../store/actions';
 
+// import DefaultInput from '../../components/UI/DefaultInput/DefaultInput';
 import MainText from '../../components/UI/MainText/MainText';
 import HeadingText from '../../components/UI/HeadingText/HeadingText';
-import InputContainer from '../../components/InputContainer/InputContainer';
 import previewImage from '../../assets/images/background.jpg';
+import InputContainer from '../../components/InputContainer/InputContainer';
 
 class SharePlaceScreen extends Component {
   constructor(props) {
@@ -44,8 +45,8 @@ class SharePlaceScreen extends Component {
             <Button title='Locate me' />
           </View>
 
-          <InputContainer placeholder='place name' />
-
+          <InputContainer />
+ 
           <View style={styles.button}>
             <Button title='Share the place.' />
           </View>
