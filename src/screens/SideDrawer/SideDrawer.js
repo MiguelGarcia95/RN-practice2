@@ -13,7 +13,8 @@ class SideDrawer extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 22, 
+    flex: 1,
+    paddingTop: 22, 
     backgroundColor: 'white',
   },
 })
