@@ -1,6 +1,5 @@
 // import React, {Component} from 'react';
 // import {StyleSheet, View} from 'react-native';
-// import {connect} from 'react-redux';
 
 // import List from './src/components/List';
 // import InputContainer from './src/components/InputContainer';
