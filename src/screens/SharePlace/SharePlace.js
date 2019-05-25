@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {View} from 'react-native';
+import {View, Text, TextInput, Button} from 'react-native';
 import {addPlace} from '../../store/actions';
 
-import InputContainer from '../../components/InputContainer/InputContainer';
+// import InputContainer from '../../components/InputContainer/InputContainer';
 
 class SharePlaceScreen extends Component {
   constructor(props) {
@@ -24,7 +24,14 @@ class SharePlaceScreen extends Component {
   render() {
     return(
       <View>
-        <InputContainer onAddPlace={this.props.onAddPlace} />
+        <Text>Share a Place with Us!</Text>
+        <View><Text>Image PReview</Text></View>
+        <Button title='pick image' />
+        <View><Text>Map</Text></View>
+        <Button title='Locate me' />
+        <TextInput placeholder='place name' />
+        <Button title='Share the place.' />
+        {/* <InputContainer onAddPlace={this.props.onAddPlace} /> */}
       </View>
     );
   }

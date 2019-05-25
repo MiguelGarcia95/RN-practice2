@@ -20,7 +20,6 @@ class AuthScreen extends Component {
           <MainText>
             <HeadingText>Please Log In</HeadingText>
           </MainText>
-          {/* <Button title="Switch to SignUp" /> */}
           <ButtonWithBackground onPress={() => alert('go to signUp')} color='#29aaf4'>Switch to SignUp</ButtonWithBackground>
           <View style={styles.inputContainer}>
             <DefaultInput style={styles.input} placeholder='Email Address' />
