@@ -13,7 +13,7 @@ export const deletePlace = key => {
   return {
     type: actionTypes.DELETE_PLACE,
     payload: {
-      placeKey: placeName
+      placeKey: key
     }
   };
 }
