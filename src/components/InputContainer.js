@@ -9,19 +9,28 @@ class InputContainer extends Component {
   placeNameChangedHandler = (event) => {
     this.setState({placeName: event});
   }
+  
+  placeAddedHandler = () => {
+    if (this.state.placeName) {
+      this.props.onAddPlace(this.state.placeName);
+      this.setState({placeName: ''});
+    } else {
+      return;
+    }
+  }
 
-render() {
-  return (
-    <View style={styles.inputContainer}>
-      <TextInput 
-        style={styles.placeInput}
-        placeholder='Awesome place.'
-        value={this.state.placeName} 
-        onChangeText={this.placeNameChangedHandler} 
-      />
-      <Button title='Add' style={styles.placeButton} onPress={this.props.placeAddedHandler} />
-    </View>
-  )
+  render() {
+    return (
+      <View style={styles.inputContainer}>
+        <TextInput 
+          style={styles.placeInput}
+          placeholder='Awesome place.'
+          value={this.state.placeName} 
+          onChangeText={this.placeNameChangedHandler} 
+        />
+        <Button title='Add' style={styles.placeButton} onPress={this.placeAddedHandler} />
+      </View>
+    )
   }
 }
 

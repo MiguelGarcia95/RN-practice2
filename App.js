@@ -8,22 +8,6 @@
 // import {addPlace, deletePlace, selectPlace, unselectPlace} from './src/store/actions';
 
 // class App extends Component {
-//   state = {
-//     placeName: ''
-//   }
-
-//   placeNameChangedHandler = (event) => {
-//     this.setState({placeName: event});
-//   }
-
-//   placeAddedHandler = () => {
-//     if (this.state.placeName) {
-//       this.props.onAddPlace(this.state.placeName);
-//       this.setState({placeName: ''});
-//     } else {
-//       return;
-//     }
-//   }
 
 //   placeSelectedHandler = key => this.props.onPlaceSelect(key);
 
