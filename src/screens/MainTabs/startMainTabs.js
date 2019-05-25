@@ -14,11 +14,12 @@ const startTabs = () => {
           label: 'Find Place',
           title: 'Find Place',
           icon: sources[0],
-          navigatorButton: {
+          navigatorButtons: {
             leftButtons: [
               {
                 icon: sources[2],
-                title: "Menu"
+                title: "Menu",
+                id: 'sideMenuToggle'
               },
             ]
           }
@@ -28,11 +29,12 @@ const startTabs = () => {
           label: 'Share Place',
           title: 'Share Place', 
           icon: sources[1],
-          navigatorButton: {
+          navigatorButtons: {
             leftButtons: [
               {
                 icon: sources[2],
-                title: "Menu"
+                title: "Menu",
+                id: 'sideMenuToggle'
               },
             ]
           }
