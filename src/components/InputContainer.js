@@ -11,18 +11,15 @@ class InputContainer extends Component {
   }
 
 render() {
-  const {placeAddedHandler} = this.props;
-  const {placeName} = this.state;
-
   return (
     <View style={styles.inputContainer}>
       <TextInput 
         style={styles.placeInput}
         placeholder='Awesome place.'
-        value={placeName} 
+        value={this.state.placeName} 
         onChangeText={this.placeNameChangedHandler} 
       />
-      <Button title='Add' style={styles.placeButton} onPress={placeAddedHandler} />
+      <Button title='Add' style={styles.placeButton} onPress={this.props.placeAddedHandler} />
     </View>
   )
   }
