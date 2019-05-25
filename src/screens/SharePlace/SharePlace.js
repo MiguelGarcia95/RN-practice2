@@ -45,7 +45,9 @@ class SharePlaceScreen extends Component {
           <View style={styles.button}>
             <Button title='Locate me' />
           </View>
+          
           <DefaultInput placeholder='place name' />
+
           <View style={styles.button}>
             <Button title='Share the place.' />
           </View>
