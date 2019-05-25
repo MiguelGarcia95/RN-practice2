@@ -7,7 +7,7 @@ class SharePlaceScreen extends Component {
   render() {
     return(
       <View>
-        <Text>On SharePlaceScreen</Text>
+        <InputContainer />
       </View>
     );
   }
