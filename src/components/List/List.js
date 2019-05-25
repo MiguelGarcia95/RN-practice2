@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, FlatList} from 'react-native';
-import ListItem from './ListItem';
+import ListItem from '../ListItem/ListItem';
 
 const List = ({places, onItemSelected}) => {
   return (
