@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import List from '../../components/List';
 
 class FindPlaceScreen extends Component {
-  
+
   itemSelectedHandler = key => {
     const selectedPlace = this.props.places.find(place => {
       return place.key === key;
@@ -17,7 +17,7 @@ class FindPlaceScreen extends Component {
       title: selectedPlace.name,
       passProps: {
         selectedPlace: selectedPlace
-      }
+      },
     })
   }
 
