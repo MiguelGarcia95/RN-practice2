@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {View} from 'react-native';
 import {addPlace} from '../../store/actions';
 
-import InputContainer from '../../components/InputContainer';
+import InputContainer from '../../components/InputContainer/InputContainer';
 
 class SharePlaceScreen extends Component {
   constructor(props) {
