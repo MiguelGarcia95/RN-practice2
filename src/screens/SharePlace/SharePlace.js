@@ -30,13 +30,19 @@ class SharePlaceScreen extends Component {
           <View style={styles.placeholder}>
             <Text>Image PReview</Text>
           </View> 
-          <Button title='pick image' />
+          <View style={styles.button}>
+            <Button title='pick image' />
+          </View>
           <View style={styles.placeholder}>
             <Text>Map</Text>
           </View>
-          <Button title='Locate me' />
+          <View style={styles.button}>
+            <Button title='Locate me' />
+          </View>
           <DefaultInput placeholder='place name' />
-          <Button title='Share the place.' />
+          <View style={styles.button}>
+            <Button title='Share the place.' />
+          </View>
           {/* <InputContainer onAddPlace={this.props.onAddPlace} /> */}
         </View>
       </ScrollView>
@@ -55,6 +61,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#eee',
     width: '80%',
     height: 150,
+  },
+  button: {
+    margin: 5,
   }
 })
 
