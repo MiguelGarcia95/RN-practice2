@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Dimensions} from 'react-native'
+import {View, Text, Dimensions, StyleSheet} from 'react-native'
 
 class SideDrawer extends Component {
   render() {
