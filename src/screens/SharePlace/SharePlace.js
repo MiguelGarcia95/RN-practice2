@@ -9,6 +9,7 @@ import HeadingText from '../../components/UI/HeadingText/HeadingText';
 import previewImage from '../../assets/images/background.jpg';
 import InputContainer from '../../components/InputContainer/InputContainer';
 import PickImage from '../../components/PickImage/PickImage';
+import PickLocation from '../../components/PickLocation/PickLocation';
 
 class SharePlaceScreen extends Component {
   constructor(props) {
@@ -34,15 +35,9 @@ class SharePlaceScreen extends Component {
             <HeadingText>Share a Place with Us!</HeadingText>
           </MainText>
 
-          <PickImage previewImage={previewImage} />
-
-          <View style={styles.placeholder}>
-            <MainText>Map</MainText>
-          </View>
-          <View style={styles.button}>
-            <Button title='Locate me' />
-          </View>
-
+          <PickImage />
+          <PickLocation />
+          
           <InputContainer />
  
           <View style={styles.button}>
