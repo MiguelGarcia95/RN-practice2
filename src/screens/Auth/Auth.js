@@ -13,7 +13,7 @@ class AuthScreen extends Component {
   render() {
     return(
       <View style={styles.container}>
-        <Text style={styles.textHeading}>Please Log In</Text>
+        <HeadingText>Please Log In</HeadingText>
         <Button title="Switch to SignUp" />
         <View style={styles.inputContainer}>
           <DefaultInput style={styles.input} placeholder='Email Address' />
