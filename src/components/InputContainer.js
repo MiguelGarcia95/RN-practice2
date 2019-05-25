@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { View, TextInput, StyleSheet, Button } from 'react-native'
+import { Keyboard } from 'react-native';
 
 class InputContainer extends Component {
   state = {
@@ -14,6 +15,7 @@ class InputContainer extends Component {
     if (this.state.placeName) {
       this.props.onAddPlace(this.state.placeName);
       this.setState({placeName: ''});
+      Keyboard.dismiss();
     } else {
       return;
     }
