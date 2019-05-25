@@ -6,11 +6,15 @@ import {connect} from 'react-redux';
 import List from '../../components/List';
 
 class FindPlaceScreen extends Component {
+  itemSelectedHandler = key => {
+    this.props.navigator.push({})
+  }
+
   render() {
     const {places} = this.props;
     return(
       <View>
-        <List places={places} />
+        <List places={places} onItemSelected />
       </View>
     );
   }
