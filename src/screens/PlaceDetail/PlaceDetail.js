@@ -2,11 +2,11 @@ import React from 'react'
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const PlaceDetail = ({place, onItemDelete, onModalClose}) => {
+const PlaceDetail = ({selectedPlace, onItemDelete}) => {
   return (
     <View style={styles.container}> 
-      <Image source={place.image} style={styles.placeImage} />
-      <Text style={styles.placeName} >{place.name}</Text>
+      <Image source={selectedPlace.image} style={styles.placeImage} />
+      <Text style={styles.placeName} >{selectedPlace.name}</Text>
       <View> 
         <TouchableOpacity onPress={onItemDelete} >
           <View style={styles.deleteButton}>
