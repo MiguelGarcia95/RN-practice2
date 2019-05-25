@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {View} from 'react-native';
 import {connect} from 'react-redux';
-// import {addPlace} from '../../store/actions';
 
 import List from '../../components/List';
 
