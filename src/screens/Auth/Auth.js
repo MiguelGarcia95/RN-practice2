@@ -14,8 +14,8 @@ class AuthScreen extends Component {
 
   render() {
     return(
-      <View style={styles.container}>
-        <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
+      <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
+        <View style={styles.container}>
           <MainText>
             <HeadingText>Please Log In</HeadingText>
           </MainText>
@@ -26,8 +26,8 @@ class AuthScreen extends Component {
             <DefaultInput style={styles.input} placeholder='Confirm Password' />
           </View>
           <Button title='Submit' onPress={this.loginHanlder} />
-        </ImageBackground>
-      </View>
+        </View>
+      </ImageBackground>
     );
   }
 }
@@ -39,7 +39,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   backgroundImage: {
-    width: '100%'
+    width: '100%',
+    flex: 1,
   },
   inputContainer: {
     width: '80%',
