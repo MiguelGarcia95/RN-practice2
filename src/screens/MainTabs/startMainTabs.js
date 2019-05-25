@@ -20,7 +20,12 @@ const startTabs = () => {
           title: 'Share Place', 
           icon: sources[1],
         },
-      ]
+      ],
+      drawer: {
+        left: {
+          screen: "places.SideDrawerScreen"
+        }
+      },
     });
   });
 }
