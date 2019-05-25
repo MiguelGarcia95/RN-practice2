@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import {View, Image, Button, StyleSheet} from 'react-native';
+import previewImage from '../../assets/images/background.jpg';
 
 class PickImage extends Component {
   render() {
     return(
-      <View>
+      <View style={styles.container}>
         <View style={styles.placeholder}>
-          <Image source={this.props.previewImage} style={styles.previewImage} />
+          <Image source={previewImage} style={styles.previewImage} />
         </View> 
         <View style={styles.button}>
           <Button title='pick image' onPress={() => alert('pick image')} />
@@ -17,6 +18,10 @@ class PickImage extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+    alignItems: 'center'
+  },
   placeholder: {
     borderWidth: 1,
     borderColor: 'black',

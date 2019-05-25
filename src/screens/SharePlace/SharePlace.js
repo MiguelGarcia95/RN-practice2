@@ -6,7 +6,6 @@ import {addPlace} from '../../store/actions';
 // import DefaultInput from '../../components/UI/DefaultInput/DefaultInput';
 import MainText from '../../components/UI/MainText/MainText';
 import HeadingText from '../../components/UI/HeadingText/HeadingText';
-import previewImage from '../../assets/images/background.jpg';
 import InputContainer from '../../components/InputContainer/InputContainer';
 import PickImage from '../../components/PickImage/PickImage';
 import PickLocation from '../../components/PickLocation/PickLocation';
@@ -37,7 +36,7 @@ class SharePlaceScreen extends Component {
 
           <PickImage />
           <PickLocation />
-          
+
           <InputContainer />
  
           <View style={styles.button}>
