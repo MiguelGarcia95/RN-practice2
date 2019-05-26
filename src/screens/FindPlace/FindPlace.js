@@ -59,12 +59,17 @@ class FindPlaceScreen extends Component {
       );
     }
     return(
-      <View>{content}</View>
+      <View style={!this.state.placesLoaded && styles.buttonContainer } >{content}</View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  buttonContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   searchButton: {
     borderColor: 'orange',
     borderWidth: 3,
