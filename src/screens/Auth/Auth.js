@@ -57,13 +57,23 @@ class AuthScreen extends Component {
   }
 
   updateInputState = (key, value) => {
+    let connectedValue = {};
+    if (this.state.controls[key].validationRules.equalTo) {
+      const equalControl = this.state.controls[key].validationRules.equalTo;
+      const equalValue = this.state.controls[equalControl].value
+      connectedValue = {
+        ...connectedValue,
+        equalTo: equalValue
+      };
+    }
     this.setState(prevState => {
       return {
         controls: {
           ...prevState.controls,
           [key]: {
-            ...prevState.controls[key],
-            value: validate(value, prevState.controls[key].validationRules)
+            ...prevState.controls[key], 
+            valid: validate(value, prevState.controls[key].validationRules, connectedValue),
+            value: value
           }
         }
       }
