@@ -30,8 +30,8 @@ class SharePlaceScreen extends Component {
     }
   }
 
-  placeNameChangedHandler = (event) => {
-    this.setState({placeName: event});
+  placeNameChangedHandler = value => {
+    this.setState({placeName: value});
   }
 
   placeAddedHandler = placeName => {
@@ -50,7 +50,7 @@ class SharePlaceScreen extends Component {
           <PickImage />
           <PickLocation />
 
-          <InputContainer placeName={this.state.placeName}  />
+          <InputContainer placeName={this.state.placeName} onChangeText={this.placeNameChangedHandler} />
  
           <View style={styles.button}>
             <Button title='Share the place.' />
