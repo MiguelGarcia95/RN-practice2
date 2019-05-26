@@ -9,11 +9,36 @@ import ButtonWithBackground from '../../components/UI/ButtonWithBackground/Butto
 import backgroundImage from '../../assets/images/background.jpg';
 
 class AuthScreen extends Component {
+  state = {
+    portraitMode: Dimensions.get('window').height > Dimensions.get('window').width ? true : false,
+    controls: {
+      email: {
+        value: '',
+        valid: false,
+        validationRules: {
+          isEmail: true
+        }
+      },
+      password: {
+        value: '',
+        valid: false,
+        validationRules: {
+          minLength: 6
+        }
+      },
+      confirmPassword: {
+        
+        value: '',
+        valid: false,
+        validationRules: {
+          minLength: 6
+        }
+      },
+    }
+  }
+
   constructor(props) {
     super(props);
-    this.state = {
-      portraitMode: Dimensions.get('window').height > Dimensions.get('window').width ? true : false
-    }
     Dimensions.addEventListener('change', this.updateStyles); 
   }
 
