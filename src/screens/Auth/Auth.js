@@ -14,10 +14,19 @@ class AuthScreen extends Component {
     this.state = {
       portraitMode: Dimensions.get('window').height > Dimensions.get('window').width ? true : false
     }
-    Dimensions.addEventListener('change', dims => {
-      this.setState({
-        portraitMode: Dimensions.get('window').height > Dimensions.get('window').width ? true : false
-      })
+    Dimensions.addEventListener('change', this.updateStyles); 
+    // this.updateStyles = this.updateStyles.bind(this);
+  }
+
+  componentWillUnmount() {
+    Dimensions.removeEventListener('change', {
+
+    });
+  }
+
+  updateStyles = dims => {
+    this.setState({
+      portraitMode: dims.window.height > dims.window.width ? true : false
     })
   }
 
