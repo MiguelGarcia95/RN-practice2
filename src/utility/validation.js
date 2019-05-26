@@ -19,13 +19,17 @@ const validate = (value, rules) => {
 }
 
 const emailValidator = value => {
+  return (
+    /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(value)
+  );
+};
 
+const minLengthValidator = (value, minLength) => {
+  return value.length >= minLength;
 }
 
-const minLengthValidator = (val, minLength) => {
-
+const equalToValidator = (value, checkValue) => {
+  return value === checkValue;
 }
 
-const equalToValidator = (val, checkValue) => {
-
-}
+export default validate;
