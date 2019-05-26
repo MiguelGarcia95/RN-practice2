@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {View, Text, TextInput, Button, StyleSheet, ScrollView, Image} from 'react-native';
+import {View,Button, StyleSheet, ScrollView, Image} from 'react-native';
+import { Keyboard } from 'react-native';
+
 import {addPlace} from '../../store/actions';
 
-// import DefaultInput from '../../components/UI/DefaultInput/DefaultInput';
 import MainText from '../../components/UI/MainText/MainText';
 import HeadingText from '../../components/UI/HeadingText/HeadingText';
 import InputContainer from '../../components/InputContainer/InputContainer';
@@ -13,6 +14,9 @@ import PickLocation from '../../components/PickLocation/PickLocation';
 class SharePlaceScreen extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      placeName: ''
+    }
     this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
   } 
 
@@ -26,6 +30,15 @@ class SharePlaceScreen extends Component {
     }
   }
 
+  placeNameChangedHandler = (event) => {
+    this.setState({placeName: event});
+  }
+
+  placeAddedHandler = placeName => {
+    this.props.onAddPlace(placeName);
+    Keyboard.dismiss();
+  }
+
   render() {
     return(
       <ScrollView>
@@ -37,7 +50,7 @@ class SharePlaceScreen extends Component {
           <PickImage />
           <PickLocation />
 
-          <InputContainer />
+          <InputContainer placeName={this.state.placeName}  />
  
           <View style={styles.button}>
             <Button title='Share the place.' />
