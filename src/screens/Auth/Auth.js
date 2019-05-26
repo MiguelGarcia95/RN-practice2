@@ -9,6 +9,25 @@ import ButtonWithBackground from '../../components/UI/ButtonWithBackground/Butto
 import backgroundImage from '../../assets/images/background.jpg';
 
 class AuthScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      respStyles: {
+        pwContainerDirection: 'column',
+        pwContainerJustifyContent: 'flex-start',
+        pwWrapperWidth: '100%',
+      }
+    }
+    Dimensions.addEventListener('change', dims => {
+      this.setState({
+        respStyles: {
+          pwContainerDirection: Dimensions.get('window').height > 500 ? 'column' : 'row',
+          pwContainerJustifyContent: Dimensions.get('window').height > 500 ? 'flex-start' : 'space-between',
+          pwWrapperWidth: Dimensions.get('window').height > 500 ? '100%' : '45%',
+        }
+      })
+    })
+  }
   loginHanlder = () => {
     startMainTabs();
   }
@@ -27,11 +46,18 @@ class AuthScreen extends Component {
           <ButtonWithBackground onPress={() => alert('go to signUp')} color='#29aaf4'>Switch to SignUp</ButtonWithBackground>
           <View style={styles.inputContainer}>
             <DefaultInput style={styles.input} placeholder='Email Address' />
-            <View style={styles.passwordContainer}>
-              <View style={styles.passwordWrapper}>
+            <View style={{
+              flexDirection: this.state.respStyles.pwContainerDirection,
+              justifyContent: this.state.respStyles.pwContainerJustifyContent
+            }}>
+              <View style={{
+                width: this.state.respStyles.pwWrapperWidth
+              }}>
                 <DefaultInput style={styles.input} placeholder='Password' />
               </View>
-              <View style={styles.passwordWrapper}>
+              <View style={{
+                width: this.state.respStyles.pwWrapperWidth
+              }}>
                 <DefaultInput style={styles.input} placeholder='Confirm Password' />
               </View>
             </View>
@@ -69,7 +95,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   passwordWrapper: {
-    width: '45%',
+    width: Dimensions.get('window').height > 500 ? '100%' : '45%',
   }
 })
 
