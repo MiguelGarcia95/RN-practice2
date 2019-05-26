@@ -3,6 +3,7 @@ import {View, TouchableOpacity, Text, StyleSheet, Animated} from 'react-native';
 import {connect} from 'react-redux';
 
 import List from '../../components/List/List';
+import { throwStatement } from '@babel/types';
 
 class FindPlaceScreen extends Component {
   static navigatorStyle = {
@@ -29,6 +30,14 @@ class FindPlaceScreen extends Component {
     }
   }
 
+  placesLoadedHandlder = () => {
+    Animated.timing(this.state.placesAnimation, {
+      toValue: 1,
+      duration: 500,
+      useNativeDriver: true
+    }).start()
+  }
+
   placesSearchHandler = () => {
     this.setState({placesLoaded: true})
     Animated.timing(this.state.removeButtonAnimation, {
@@ -39,6 +48,7 @@ class FindPlaceScreen extends Component {
       this.setState({
         placesLoaded: true
       });
+      this.placesLoadedHandlder();
     });
   }
 
@@ -78,7 +88,11 @@ class FindPlaceScreen extends Component {
     );
     if (this.state.placesLoaded) {
       content = (
-        <List places={this.props.places} onItemSelected={this.itemSelectedHandler} />
+        <Animated.View style={{
+          opacity: this.state.placesAnimation,
+        }}>
+          <List places={this.props.places} onItemSelected={this.itemSelectedHandler} />
+        </Animated.View>
       );
     }
     return(
