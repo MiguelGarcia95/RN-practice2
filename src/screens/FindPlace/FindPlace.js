@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View} from 'react-native';
+import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 
 import List from '../../components/List/List';
@@ -40,6 +40,13 @@ class FindPlaceScreen extends Component {
 
   render() {
     const {places} = this.props;
+    let content = (
+      <TouchableOpacity>
+        <View>
+          <Text>Find Places</Text>
+        </View>
+      </TouchableOpacity>
+    );
     return(
       <View>
         <List places={places} onItemSelected={this.itemSelectedHandler} />
@@ -47,6 +54,15 @@ class FindPlaceScreen extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  searchButton: {
+    borderColor: 'orange',
+    borderWidth: 3,
+    borderRadius: 50,
+    padding: 20
+  }
+})
 
 const mapStateToProps = state => {
   return {
