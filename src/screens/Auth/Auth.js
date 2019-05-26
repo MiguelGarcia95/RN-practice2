@@ -15,7 +15,6 @@ class AuthScreen extends Component {
       portraitMode: Dimensions.get('window').height > Dimensions.get('window').width ? true : false
     }
     Dimensions.addEventListener('change', this.updateStyles); 
-    // this.updateStyles = this.updateStyles.bind(this);
   }
 
   componentWillUnmount() {

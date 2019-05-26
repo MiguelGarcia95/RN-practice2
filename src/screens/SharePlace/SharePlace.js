@@ -12,6 +12,10 @@ import PickImage from '../../components/PickImage/PickImage';
 import PickLocation from '../../components/PickLocation/PickLocation';
 
 class SharePlaceScreen extends Component {
+  static navigatorStyle = {
+    navBarButtonColor: 'orange'
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -24,7 +28,7 @@ class SharePlaceScreen extends Component {
     if(event.type === 'NavBarButtonPress') {
       if (event.id === 'sideMenuToggle') {
         this.props.navigator.toggleDrawer({
-          side: 'left'
+          side: 'left' 
         });
       }
     }
