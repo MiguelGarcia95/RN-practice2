@@ -11,6 +11,9 @@ class FindPlaceScreen extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      placesLoaded: false
+    }
     this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
   } 
   
@@ -22,6 +25,10 @@ class FindPlaceScreen extends Component {
         });
       }
     }
+  }
+
+  placesSearchHandler = () => {
+
   }
 
   itemSelectedHandler = key => {
@@ -39,18 +46,20 @@ class FindPlaceScreen extends Component {
   }
 
   render() {
-    const {places} = this.props;
     let content = (
-      <TouchableOpacity>
-        <View>
-          <Text>Find Places</Text>
+      <TouchableOpacity onPress={this.placesSearchHandler}>
+        <View style={styles.searchButton}>
+          <Text style={styles.searchButtonText}>Find Places</Text>
         </View>
       </TouchableOpacity>
     );
+    if (this.state.placesLoaded) {
+      content = (
+        <List places={this.props.places} onItemSelected={this.itemSelectedHandler} />
+      );
+    }
     return(
-      <View>
-        <List places={places} onItemSelected={this.itemSelectedHandler} />
-      </View>
+      <View>{content}</View>
     );
   }
 }
@@ -60,7 +69,12 @@ const styles = StyleSheet.create({
     borderColor: 'orange',
     borderWidth: 3,
     borderRadius: 50,
-    padding: 20
+    padding: 20,
+  }, 
+  searchButtonText: {
+    color: 'orange',
+    fontWeight: 'bold',
+    fontSize: 26,
   }
 })
 
