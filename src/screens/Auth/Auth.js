@@ -90,12 +90,19 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: 'bold'
   }, 
-  passwordContainer: {
-    flexDirection: Dimensions.get('window').height > 500 ? 'column' : 'row',
+  landScapePasswordContainer: {
+    flexDirection: 'column',
+    justifyContent: 'flex-start'
+  },
+  portraitPasswordContainer: {
+    flexDirection: 'row',
     justifyContent: 'space-between'
   },
-  passwordWrapper: {
-    width: Dimensions.get('window').height > 500 ? '100%' : '45%',
+  landscapePasswordWrapper: {
+    width: '100%',
+  },
+  portraitPasswordWrapper: {
+    width: '45%',
   }
 })
 
