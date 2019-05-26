@@ -66,15 +66,29 @@ class AuthScreen extends Component {
         equalTo: equalValue
       };
     }
+    if (key === 'password') {
+      connectedValue = {
+        ...connectedValue, 
+        equalTo: value
+      };
+    }
     this.setState(prevState => {
       return {
         controls: {
           ...prevState.controls,
+          confirmPassword: {
+            ...prevState.controls.confirmPassword, 
+            valid: key === 'password' ? validate(
+              prevState.controls.confirmPassword.value,
+              prevState.controls.confirmPassword.validationRules,
+              connectedValue
+            ) : prevState.controls.confirmPassword.valid,
+          },
           [key]: {
             ...prevState.controls[key], 
             valid: validate(value, prevState.controls[key].validationRules, connectedValue),
             value: value
-          }
+          },
         }
       }
     })
