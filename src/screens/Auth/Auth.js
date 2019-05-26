@@ -19,9 +19,7 @@ class AuthScreen extends Component {
   }
 
   componentWillUnmount() {
-    Dimensions.removeEventListener('change', {
-
-    });
+    Dimensions.removeEventListener('change', this.updateStyles);
   }
 
   updateStyles = dims => {
