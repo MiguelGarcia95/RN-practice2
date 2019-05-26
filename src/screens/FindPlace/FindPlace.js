@@ -28,7 +28,7 @@ class FindPlaceScreen extends Component {
   }
 
   placesSearchHandler = () => {
-
+    this.setState({placesLoaded: true})
   }
 
   itemSelectedHandler = key => {
@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderRadius: 50,
     padding: 20,
+    alignItems: 'center'
   }, 
   searchButtonText: {
     color: 'orange',
