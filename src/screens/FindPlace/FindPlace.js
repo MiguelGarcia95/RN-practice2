@@ -70,14 +70,9 @@ class FindPlaceScreen extends Component {
     let content = (
       <Animated.View style={{
         opacity: this.state.removeButtonAnimation,
-        transform: [
-          {
-            scale: this.state.removeButtonAnimation.interpolate({
-              inputRange: [0, 1],
-              outputRange: [10, 1]
-            })
-          },
-        ]
+        transform: [{
+          scale: this.state.removeButtonAnimation
+        }]
       }} >
         <TouchableOpacity onPress={this.placesSearchHandler}>
           <View style={styles.searchButton}>
