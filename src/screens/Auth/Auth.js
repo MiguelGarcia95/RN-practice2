@@ -63,7 +63,7 @@ class AuthScreen extends Component {
           ...prevState.controls,
           [key]: {
             ...prevState.controls[key],
-            value: value
+            value: validate(value, prevState.controls[key].validationRules)
           }
         }
       }
