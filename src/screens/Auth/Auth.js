@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Button,  ImageBackground, StyleSheet} from 'react-native';
+import {View, Dimensions,  ImageBackground, StyleSheet} from 'react-native';
 
 import startMainTabs from '../MainTabs/startMainTabs';
 import DefaultInput from '../../components/UI/DefaultInput/DefaultInput';
@@ -14,17 +14,27 @@ class AuthScreen extends Component {
   }
 
   render() {
+    let headingText = null;
+    if (Dimensions.get('window').height > 500) {
+      headingText = 'Please Log In'
+    }
     return(
       <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
         <View style={styles.container}>
           <MainText>
-            <HeadingText>Please Log In</HeadingText>
+            <HeadingText>{headingText}</HeadingText>
           </MainText>
           <ButtonWithBackground onPress={() => alert('go to signUp')} color='#29aaf4'>Switch to SignUp</ButtonWithBackground>
           <View style={styles.inputContainer}>
             <DefaultInput style={styles.input} placeholder='Email Address' />
-            <DefaultInput style={styles.input} placeholder='Password' />
-            <DefaultInput style={styles.input} placeholder='Confirm Password' />
+            <View style={styles.passwordContainer}>
+              <View style={styles.passwordWrapper}>
+                <DefaultInput style={styles.input} placeholder='Password' />
+              </View>
+              <View style={styles.passwordWrapper}>
+                <DefaultInput style={styles.input} placeholder='Confirm Password' />
+              </View>
+            </View>
           </View>
           <ButtonWithBackground onPress={this.loginHanlder} color='#29aaf4'>Submit</ButtonWithBackground>
 
@@ -47,9 +57,19 @@ const styles = StyleSheet.create({
   inputContainer: {
     width: '80%',
   },
+  input: {
+    backgroundColor: '#ddd'
+  },
   textHeading: {
     fontSize: 28,
     fontWeight: 'bold'
+  }, 
+  passwordContainer: {
+    flexDirection: Dimensions.get('window').height > 500 ? 'column' : 'row',
+    justifyContent: 'space-between'
+  },
+  passwordWrapper: {
+    width: '45%',
   }
 })
 
