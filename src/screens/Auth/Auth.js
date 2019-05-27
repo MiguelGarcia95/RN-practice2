@@ -159,8 +159,8 @@ class AuthScreen extends Component {
               valid={controls.email.valid}
               touched={controls.email.touched}
             />
-            <View style={portraitMode ? styles.portraitPasswordContainer : styles.landScapePasswordContainer}>
-              <View style={portraitMode ? styles.portraitPasswordWrapper : styles.landscapePasswordWrapper}>
+            <View style={portraitMode || authMode === 'login' ? styles.portraitPasswordContainer : styles.landScapePasswordContainer}>
+              <View style={portraitMode || authMode === 'login' ? styles.portraitPasswordWrapper : styles.landscapePasswordWrapper}>
                 <DefaultInput 
                   style={styles.input} 
                   placeholder='Password' 
