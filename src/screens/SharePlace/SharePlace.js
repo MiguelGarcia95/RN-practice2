@@ -8,6 +8,7 @@ import {addPlace} from '../../store/actions';
 import MainText from '../../components/UI/MainText/MainText';
 import HeadingText from '../../components/UI/HeadingText/HeadingText';
 import DefaultInput from '../../components/UI/DefaultInput/DefaultInput';
+import ButtonWithBackground from '../../components/UI/ButtonWithBackground/ButtonWithBackground';
 import PickImage from '../../components/PickImage/PickImage';
 import PickLocation from '../../components/PickLocation/PickLocation';
 import validate from '../../utility/validation';
@@ -31,7 +32,7 @@ class SharePlaceScreen extends Component {
         touched: false,
         valid: false,
         validationRules: {
-          minLength: 4
+          minLength: 2
         }
       },
       location: {
@@ -62,10 +63,16 @@ class SharePlaceScreen extends Component {
 
   placeAddedHandler = () => {
     this.props.onAddPlace(
-      this.state.placeName,
+      this.state.controls.placeName.value,
       this.state.controls.location.value
     )
-    this.setState({placeName: ''});
+    this.setState({
+      controls: {
+        placeName: {
+          value: ''
+        }
+      }
+    });
     Keyboard.dismiss();
   }
 
@@ -85,18 +92,10 @@ class SharePlaceScreen extends Component {
 
   
   updateInputState = (key, value) => {
-    // let connectedValue = {};
-    // if (this.state.controls[key].validationRules.equalTo) {
-    //   const equalControl = this.state.controls[key].validationRules.equalTo;
-    //   const equalValue = this.state.controls[equalControl].value
-    //   connectedValue = {
-    //     ...connectedValue,
-    //     equalTo: equalValue
-    //   };
-    // }
     this.setState(prevState => {
       return {
         controls: {
+          ...prevState.controls,
           [key]: {
             ...prevState.controls[key], 
             value: value,
@@ -106,9 +105,11 @@ class SharePlaceScreen extends Component {
         }
       }
     })
+
   }
 
   render() {
+    const {controls} = this.state;
     return(
       <ScrollView>
         <View style={styles.container}> 
@@ -119,25 +120,26 @@ class SharePlaceScreen extends Component {
           <PickImage />
           <PickLocation onLocationPick={this.locationPickedHanlder} />
 
-          {/* <InputContainer placeName={this.state.placeName} onChangeText={this.placeNameChangedHandler} /> */}
-
           <DefaultInput 
             style={styles.input} 
             placeholder='Place Name' 
-            value={this.state.controls.placeName.value}
+            value={controls.placeName.value}
             onChangeText={value => this.updateInputState('placeName', value)}
-            valid={this.state.controls.placeName.valid}
-            touched={this.state.controls.placeName.touched}
+            valid={controls.placeName.valid}
+            touched={controls.placeName.touched}
           />
  
           <View style={styles.button}>
-            <Button 
-              title='Share the place.' 
-              onPress={this.placeAddedHandler} 
+            <ButtonWithBackground 
+              color='#aa1939' 
+              backgroundColor='#24ffa8' 
+              onPress={this.placeAddedHandler}
               disabled={
-                !this.state.controls.location.valid
+                !controls.location.valid || !controls.placeName.valid
               }
-            />
+            >
+              Share place
+            </ButtonWithBackground>
           </View>
         </View>
       </ScrollView>
