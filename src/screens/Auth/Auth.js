@@ -15,6 +15,7 @@ class AuthScreen extends Component {
     controls: {
       email: {
         value: '',
+        touched: false,
         valid: false,
         validationRules: {
           isEmail: true
@@ -22,6 +23,7 @@ class AuthScreen extends Component {
       },
       password: {
         value: '',
+        touched: false,
         valid: false,
         validationRules: {
           minLength: 6
@@ -29,6 +31,7 @@ class AuthScreen extends Component {
       },
       confirmPassword: {
         value: '',
+        touched: false,
         valid: false,
         validationRules: {
           equalTo: 'password'
@@ -88,6 +91,7 @@ class AuthScreen extends Component {
             ...prevState.controls[key], 
             value: value,
             valid: validate(value, prevState.controls[key].validationRules, connectedValue),
+            touched: true,
           },
         }
       }
@@ -114,6 +118,7 @@ class AuthScreen extends Component {
               value={controls.email.value}
               onChangeText={value => this.updateInputState('email', value)}
               valid={controls.email.valid}
+              touched={controls.email.touched}
             />
             <View style={portraitMode ? styles.portraitPasswordContainer : styles.landScapePasswordContainer}>
               <View style={portraitMode ? styles.portraitPasswordWrapper : styles.landscapePasswordWrapper}>
@@ -123,6 +128,7 @@ class AuthScreen extends Component {
                   value={controls.password.value}
                   onChangeText={value => this.updateInputState('password', value)}
                   valid={controls.password.valid}
+                  touched={controls.password.touched}
                 />
               </View>
               <View style={portraitMode ? styles.portraitPasswordWrapper : styles.landscapePasswordWrapper}>
@@ -132,6 +138,7 @@ class AuthScreen extends Component {
                   value={controls.confirmPassword.value}
                   onChangeText={value => this.updateInputState('confirmPassword', value)}
                   valid={controls.confirmPassword.valid}
+                  touched={controls.confirmPassword.touched}
                 />
               </View>
             </View>
