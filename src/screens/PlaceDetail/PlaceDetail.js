@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons';
 import {connect} from 'react-redux';
+import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 
 import {deletePlace} from '../../store/actions';
 
@@ -17,6 +18,16 @@ class PlaceDetail extends Component {
       <View style={styles.container}> 
         <Image source={selectedPlace.image} style={styles.placeImage} />
         <Text style={styles.placeName} >{selectedPlace.name}</Text>
+        <MapView 
+          initialRegion={this.state.focusedLocation}
+          // region={this.state.focusedLocation}
+          provider={PROVIDER_GOOGLE} 
+          style={styles.map}
+          onPress={this.pickLocationHandler}
+          ref={ref => this.map = ref}
+        >
+          {/* {marker} */}
+        </MapView>
         <View> 
           <TouchableOpacity onPress={this.placeDeletedHandler} >
             <View style={styles.deleteButton}>
