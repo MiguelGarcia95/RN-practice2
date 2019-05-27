@@ -13,13 +13,6 @@ import PickImage from '../../components/PickImage/PickImage';
 import PickLocation from '../../components/PickLocation/PickLocation';
 import validate from '../../utility/validation';
 
-////////////////////////////////
-// 
-//  Add input validation
-//  and keyboard settings
-// 
-//////////////////////////////// 
-
 class SharePlaceScreen extends Component {
   static navigatorStyle = {
     navBarButtonColor: 'orange'
