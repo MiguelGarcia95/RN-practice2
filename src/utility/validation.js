@@ -8,8 +8,8 @@ const validate = (value, rules, connectedValue) => {
       case 'midLength':
         isValid = isValid && minLengthValidator(value, rules[rule]);
         break;
-      case 'midLength':
-        isValid = isValid && equalToValidator(value, connectedValue);
+      case 'equalTo':
+        isValid = isValid && equalToValidator(value, connectedValue.value);
         break;
       default:
         isValid = true;
