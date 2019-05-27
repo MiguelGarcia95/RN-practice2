@@ -195,6 +195,10 @@ class AuthScreen extends Component {
           >
             Submit
           </ButtonWithBackground>
+          
+          <ButtonWithBackground color='#24ffa8' onPress={this.loginHanlder}>
+            Submit [DEVELOPMENT ONLY] 
+          </ButtonWithBackground>
 
         </KeyboardAvoidingView>
       </ImageBackground>
