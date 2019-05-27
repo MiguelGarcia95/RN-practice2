@@ -25,7 +25,6 @@ class SharePlaceScreen extends Component {
   }
 
   state = {
-    placeName: '',
     controls: {
       placeName: {
         value: '',
@@ -84,6 +83,31 @@ class SharePlaceScreen extends Component {
     })
   }
 
+  
+  updateInputState = (key, value) => {
+    // let connectedValue = {};
+    // if (this.state.controls[key].validationRules.equalTo) {
+    //   const equalControl = this.state.controls[key].validationRules.equalTo;
+    //   const equalValue = this.state.controls[equalControl].value
+    //   connectedValue = {
+    //     ...connectedValue,
+    //     equalTo: equalValue
+    //   };
+    // }
+    this.setState(prevState => {
+      return {
+        controls: {
+          [key]: {
+            ...prevState.controls[key], 
+            value: value,
+            valid: validate(value, prevState.controls[key].validationRules),
+            touched: true,
+          },
+        }
+      }
+    })
+  }
+
   render() {
     return(
       <ScrollView>
@@ -99,9 +123,9 @@ class SharePlaceScreen extends Component {
 
           <DefaultInput 
             style={styles.input} 
-            placeholder='Confirm Password' 
-            value={this.state.placeName}
-            onChangeText={value => this.updateInputState('confirmPassword', value)}
+            placeholder='Place Name' 
+            value={this.state.controls.placeName.value}
+            onChangeText={value => this.updateInputState('placeName', value)}
             valid={this.state.controls.placeName.valid}
             touched={this.state.controls.placeName.touched}
           />
