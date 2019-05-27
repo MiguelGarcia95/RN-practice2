@@ -3,7 +3,6 @@ import {View, TouchableOpacity, Text, StyleSheet, Animated} from 'react-native';
 import {connect} from 'react-redux';
 
 import List from '../../components/List/List';
-import { throwStatement } from '@babel/types';
 
 class FindPlaceScreen extends Component {
   static navigatorStyle = {

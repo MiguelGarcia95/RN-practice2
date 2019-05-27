@@ -7,9 +7,10 @@ import {addPlace} from '../../store/actions';
 
 import MainText from '../../components/UI/MainText/MainText';
 import HeadingText from '../../components/UI/HeadingText/HeadingText';
-import InputContainer from '../../components/InputContainer/InputContainer';
+import DefaultInput from '../../components/UI/DefaultInput/DefaultInput';
 import PickImage from '../../components/PickImage/PickImage';
 import PickLocation from '../../components/PickLocation/PickLocation';
+import validate from '../../utility/validation';
 
 ////////////////////////////////
 // 
@@ -26,6 +27,14 @@ class SharePlaceScreen extends Component {
   state = {
     placeName: '',
     controls: {
+      placeName: {
+        value: '',
+        touched: false,
+        valid: false,
+        validationRules: {
+          minLength: 4
+        }
+      },
       location: {
         value: null,
         valid: false,
@@ -86,7 +95,16 @@ class SharePlaceScreen extends Component {
           <PickImage />
           <PickLocation onLocationPick={this.locationPickedHanlder} />
 
-          <InputContainer placeName={this.state.placeName} onChangeText={this.placeNameChangedHandler} />
+          {/* <InputContainer placeName={this.state.placeName} onChangeText={this.placeNameChangedHandler} /> */}
+
+          <DefaultInput 
+            style={styles.input} 
+            placeholder='Confirm Password' 
+            value={this.state.placeName}
+            onChangeText={value => this.updateInputState('confirmPassword', value)}
+            valid={this.state.controls.placeName.valid}
+            touched={this.state.controls.placeName.touched}
+          />
  
           <View style={styles.button}>
             <Button 
