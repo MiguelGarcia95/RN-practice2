@@ -14,19 +14,20 @@ class PlaceDetail extends Component {
 
   render() {
     const {selectedPlace} = this.props;
+    const mapRegion = {
+      ...selectedPlace.location,
+      latitudeDelta: 0.0122,
+      longitudeDelta: 
+        Dimensions.get('window').width / 
+        Dimensions.get('window').height * 
+        0.0122,
+    }
     return (
       <View style={styles.container}> 
         <Image source={selectedPlace.image} style={styles.placeImage} />
         <Text style={styles.placeName} >{selectedPlace.name}</Text>
         <MapView 
-          initialRegion={{
-            ...selectedPlace.location,
-            latitudeDelta: 0.0122,
-            longitudeDelta: 
-              Dimensions.get('window').width / 
-              Dimensions.get('window').height * 
-              0.0122,
-          }}
+          initialRegion={mapRegion}
           // region={this.state.focusedLocation}
           provider={PROVIDER_GOOGLE} 
           style={styles.map}
@@ -34,6 +35,7 @@ class PlaceDetail extends Component {
           // ref={ref => this.map = ref}
         >
           {/* {marker} */}
+          <MapView.Marker coordinate={mapRegion} />
         </MapView>
         <View> 
           <TouchableOpacity onPress={this.placeDeletedHandler} >
