@@ -113,6 +113,7 @@ class AuthScreen extends Component {
               placeholder='Email Address' 
               value={controls.email.value}
               onChangeText={value => this.updateInputState('email', value)}
+              valid={controls.email.valid}
             />
             <View style={portraitMode ? styles.portraitPasswordContainer : styles.landScapePasswordContainer}>
               <View style={portraitMode ? styles.portraitPasswordWrapper : styles.landscapePasswordWrapper}>
@@ -121,6 +122,7 @@ class AuthScreen extends Component {
                   placeholder='Password' 
                   value={controls.password.value}
                   onChangeText={value => this.updateInputState('password', value)}
+                  valid={controls.password.valid}
                 />
               </View>
               <View style={portraitMode ? styles.portraitPasswordWrapper : styles.landscapePasswordWrapper}>
@@ -129,6 +131,7 @@ class AuthScreen extends Component {
                   placeholder='Confirm Password' 
                   value={controls.confirmPassword.value}
                   onChangeText={value => this.updateInputState('confirmPassword', value)}
+                  valid={controls.confirmPassword.valid}
                 />
               </View>
             </View>
