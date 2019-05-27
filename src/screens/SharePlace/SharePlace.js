@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {View,Button, StyleSheet, ScrollView, Image} from 'react-native';
+import {View, StyleSheet, ScrollView, KeyboardAvoidingView, TouchableWithoutFeedback} from 'react-native';
 import { Keyboard } from 'react-native';
 
 import {addPlace} from '../../store/actions';
@@ -112,7 +112,7 @@ class SharePlaceScreen extends Component {
     const {controls} = this.state;
     return(
       <ScrollView>
-        <View style={styles.container}> 
+        <View style={styles.container} > 
           <MainText>
             <HeadingText>Share a Place with Us!</HeadingText>
           </MainText>
@@ -128,19 +128,22 @@ class SharePlaceScreen extends Component {
             valid={controls.placeName.valid}
             touched={controls.placeName.touched}
           />
- 
-          <View style={styles.button}>
-            <ButtonWithBackground 
-              color='#aa1939' 
-              backgroundColor='#24ffa8' 
-              onPress={this.placeAddedHandler}
-              disabled={
-                !controls.location.valid || !controls.placeName.valid
-              }
-            >
-              Share place
-            </ButtonWithBackground>
-          </View>
+
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <KeyboardAvoidingView style={styles.button} behavior='padding'>
+              <ButtonWithBackground 
+                color='#aa1939' 
+                backgroundColor='#24ffa8' 
+                onPress={this.placeAddedHandler}
+                disabled={
+                  !controls.location.valid || !controls.placeName.valid
+                }
+              >
+                Share place
+              </ButtonWithBackground>
+            </KeyboardAvoidingView>
+          </TouchableWithoutFeedback>
+
         </View>
       </ScrollView>
     );
