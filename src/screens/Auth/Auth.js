@@ -14,6 +14,7 @@ import {tryAuth} from '../../store/actions'
 class AuthScreen extends Component {
   state = {
     portraitMode: Dimensions.get('window').height > Dimensions.get('window').width ? true : false,
+    authMode: 'login',
     controls: {
       email: {
         value: '',
@@ -105,19 +106,50 @@ class AuthScreen extends Component {
     })
   }
 
+  switchAuthModeHandler = () => {
+    this.setState(prevState => {
+      return {
+        authMode: prevState.authMode === 'login' ? 'signup' : 'login'
+      }
+    })
+  }
+
   render() {
-    const {portraitMode, controls} = this.state;
+    const {portraitMode, controls, authMode} = this.state;
     let headingText = null;
+    let confirmPasswordControl = null;
+
     if (portraitMode) {
-      headingText = 'Please Log In'
+      headingText = authMode === 'login' ? 'Please Log In' : 'Please Sign Up'
     }
+
+    if (authMode === 'signup') {
+      confirmPasswordControl = (
+        <View style={portraitMode ? styles.portraitPasswordWrapper : styles.landscapePasswordWrapper}>
+          <DefaultInput 
+            style={styles.input} 
+            placeholder='Confirm Password' 
+            value={controls.confirmPassword.value}
+            onChangeText={value => this.updateInputState('confirmPassword', value)}
+            valid={controls.confirmPassword.valid}
+            touched={controls.confirmPassword.touched}
+          />
+        </View>
+      )
+    }
+
     return(
       <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
         <View style={styles.container}>
           <MainText>
             <HeadingText>{headingText}</HeadingText>
           </MainText>
-          <ButtonWithBackground onPress={() => alert('go to signUp')} color='#29aaf4'>Switch to SignUp</ButtonWithBackground>
+          <ButtonWithBackground 
+            onPress={this.switchAuthModeHandler} 
+            color='#29aaf4'
+          >
+            Switch to {authMode === 'login' ? 'Sign Up' : 'Login'} 
+          </ButtonWithBackground>
           <View style={styles.inputContainer}>
             <DefaultInput 
               style={styles.input} 
@@ -138,16 +170,9 @@ class AuthScreen extends Component {
                   touched={controls.password.touched}
                 />
               </View>
-              <View style={portraitMode ? styles.portraitPasswordWrapper : styles.landscapePasswordWrapper}>
-                <DefaultInput 
-                  style={styles.input} 
-                  placeholder='Confirm Password' 
-                  value={controls.confirmPassword.value}
-                  onChangeText={value => this.updateInputState('confirmPassword', value)}
-                  valid={controls.confirmPassword.valid}
-                  touched={controls.confirmPassword.touched}
-                />
-              </View>
+
+              {confirmPasswordControl}
+
             </View>
           </View>
           <ButtonWithBackground 
