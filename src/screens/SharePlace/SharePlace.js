@@ -59,10 +59,13 @@ class SharePlaceScreen extends Component {
       this.state.controls.placeName.value,
       this.state.controls.location.value
     )
-    this.setState({
-      controls: {
-        placeName: {
-          value: ''
+    this.setState(prevState => {
+      return {
+        controls: {
+          ...prevState.controls,
+          placeName: {
+            value: ''
+          }
         }
       }
     });
@@ -98,7 +101,6 @@ class SharePlaceScreen extends Component {
         }
       }
     })
-
   }
 
   render() {
