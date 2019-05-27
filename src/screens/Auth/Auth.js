@@ -133,9 +133,7 @@ class AuthScreen extends Component {
             onChangeText={value => this.updateInputState('confirmPassword', value)}
             valid={controls.confirmPassword.valid}
             touched={controls.confirmPassword.touched}
-            autoCapitalize={false}
-            autoCorrect={false}
-            keyboardType="email-address"
+            secureTextEntry={true}
           />
         </View>
       )
@@ -161,7 +159,9 @@ class AuthScreen extends Component {
               onChangeText={value => this.updateInputState('email', value)}
               valid={controls.email.valid}
               touched={controls.email.touched}
-              secureTextEntry={true}
+              autoCapitalize='none'
+              autoCorrect={false}
+              keyboardType='email-address'
             />
             <View style={portraitMode || authMode === 'login' ? styles.portraitPasswordContainer : styles.landScapePasswordContainer}>
               <View style={portraitMode || authMode === 'login' ? styles.portraitPasswordWrapper : styles.landscapePasswordWrapper}>
