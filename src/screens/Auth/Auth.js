@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import {View, Dimensions,  ImageBackground, StyleSheet} from 'react-native';
 
 import startMainTabs from '../MainTabs/startMainTabs';
@@ -8,6 +9,7 @@ import MainText from '../../components/UI/MainText/MainText';
 import ButtonWithBackground from '../../components/UI/ButtonWithBackground/ButtonWithBackground';
 import backgroundImage from '../../assets/images/background.jpg';
 import validate from '../../utility/validation';
+import {tryAuth} from '../../store/actions'
 
 class AuthScreen extends Component {
   state = {
@@ -191,6 +193,12 @@ const styles = StyleSheet.create({
   portraitPasswordWrapper: {
     width: '100%',
   }
-})
+});
 
-export default AuthScreen;
+const mapDispatchToProps = dispatch => {
+  return {
+    onLogin: authData => dispatch(tryAuth(authData))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(AuthScreen);

@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     borderColor: '#aaa',
   },
   disabledText: {
-    color: '#aaa',
+    color: '#ccc',
   }
 })
 
