@@ -31,6 +31,10 @@ class SharePlaceScreen extends Component {
       location: {
         value: null,
         valid: false,
+      },
+      image: {
+        value: null,
+        valid: false,
       }
     },
   }
@@ -57,7 +61,8 @@ class SharePlaceScreen extends Component {
   placeAddedHandler = () => {
     this.props.onAddPlace(
       this.state.controls.placeName.value,
-      this.state.controls.location.value
+      this.state.controls.location.value,
+      this.state.controls.image.value,
     )
     this.setState(prevState => {
       return {
@@ -103,6 +108,20 @@ class SharePlaceScreen extends Component {
     })
   }
 
+  imagePickedHandler = image => {
+    this.setState(prevState => {
+      return {
+        controls: {
+          ...prevState.controls,
+          image: {
+            value: image,
+            valid: true,
+          }
+        }
+      }
+    })
+  }
+
   render() {
     const {controls} = this.state;
     return(
@@ -112,7 +131,7 @@ class SharePlaceScreen extends Component {
             <HeadingText>Share a Place with Us!</HeadingText>
           </MainText>
 
-          <PickImage />
+          <PickImage onImagePick={this.imagePickedHandler} />
           <PickLocation onLocationPick={this.locationPickedHanlder} />
 
           <DefaultInput 
@@ -131,7 +150,9 @@ class SharePlaceScreen extends Component {
                 backgroundColor='#24ffa8' 
                 onPress={this.placeAddedHandler}
                 disabled={
-                  !controls.location.valid || !controls.placeName.valid
+                  !controls.location.valid || 
+                  !controls.placeName.valid ||
+                  !controls.image.valid
                 }
               >
                 Share place
@@ -164,7 +185,7 @@ const styles = StyleSheet.create({
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAddPlace: (placeName, location) => dispatch(addPlace(placeName, location))
+    onAddPlace: (placeName, location, image) => dispatch(addPlace(placeName, location, image))
   }
 }
 
