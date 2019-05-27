@@ -14,7 +14,8 @@ const reducer = (state = initialState, action) => {
           name: action.payload.placeName,
           image: {
             uri: 'https://cdn.mos.cms.futurecdn.net/uxyTQorrAz7z8KcVZzPjDe.jpg'
-          }
+          },
+          location: action.payload.location,
         }),
       }
     case actionTypes.DELETE_PLACE:
