@@ -23,11 +23,18 @@ class SharePlaceScreen extends Component {
     navBarButtonColor: 'orange'
   }
 
+  state = {
+    placeName: '',
+    controls: {
+      location: {
+        value: null,
+        valid: false,
+      }
+    },
+  }
+
   constructor(props) {
     super(props);
-    this.state = {
-      placeName: ''
-    }
     this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
   } 
 
@@ -46,11 +53,26 @@ class SharePlaceScreen extends Component {
   }
 
   placeAddedHandler = () => {
-    if (this.state.placeName.trim() !== '') {
-      this.props.onAddPlace(this.state.placeName);
-      this.setState({placeName: ''});
-      Keyboard.dismiss();
-    }
+    this.props.onAddPlace(
+      this.state.placeName,
+      this.state.controls.location.value
+    )
+    this.setState({placeName: ''});
+    Keyboard.dismiss();
+  }
+
+  locationPickedHanlder = location => {
+    this.setState(prevState => {
+      return {
+        controls: {
+          ...prevState.controls,
+          location: {
+            value: location, 
+            valid: true
+          }
+        }
+      }
+    })
   }
 
   render() {
@@ -62,12 +84,18 @@ class SharePlaceScreen extends Component {
           </MainText>
 
           <PickImage />
-          <PickLocation />
+          <PickLocation onLocationPick={this.locationPickedHanlder} />
 
           <InputContainer placeName={this.state.placeName} onChangeText={this.placeNameChangedHandler} />
  
           <View style={styles.button}>
-            <Button title='Share the place.' onPress={this.placeAddedHandler} />
+            <Button 
+              title='Share the place.' 
+              onPress={this.placeAddedHandler} 
+              disabled={
+                !this.state.controls.location.valid
+              }
+            />
           </View>
         </View>
       </ScrollView>
@@ -94,7 +122,7 @@ const styles = StyleSheet.create({
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAddPlace: placeName => dispatch(addPlace(placeName))
+    onAddPlace: (placeName, location) => dispatch(addPlace(placeName, location))
   }
 }
 

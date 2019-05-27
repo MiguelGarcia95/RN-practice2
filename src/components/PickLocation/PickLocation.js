@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {View, Button, StyleSheet, Dimensions} from 'react-native';
+import {View, StyleSheet, Dimensions} from 'react-native';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 
-import MainText from '../UI/MainText/MainText';
+import ButtonWithBackground from '../UI/ButtonWithBackground/ButtonWithBackground';
 
 class PickLocation extends Component {
   state = {
@@ -34,6 +34,10 @@ class PickLocation extends Component {
         },
         locationChosen:  true
       }
+    })
+    this.props.onLocationPick({
+      latitude: coords.latitude,
+      longitude: coords.longitude,
     })
   }
 
@@ -72,7 +76,9 @@ class PickLocation extends Component {
           {marker}
         </MapView>
         <View style={styles.button}>
-          <Button title='Locate me' onPress={this.getLocationHandler} />
+          <ButtonWithBackground color='#aa1939' backgroundColor='#24ffa8' onPress={this.getLocationHandler}>
+            Locate me
+          </ButtonWithBackground>
         </View>
       </View>
     )

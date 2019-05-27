@@ -3,8 +3,8 @@ import {View, TouchableOpacity, TouchableNativeFeedback, Platform, Text, StyleSh
 
 const ButtonWithBackground = props => {
   const content = (
-    <View style={[styles.button, {backgroundColor: props.color}, props.disabled ? styles.disabled : null ]}>
-      <Text style={props.disabled ? styles.disabledText : null}>{props.children}</Text>
+    <View style={[styles.button, {backgroundColor: props.backgroundColor}, props.disabled ? styles.disabled : null ]}>
+      <Text style={[{color: props.color}, props.disabled ? styles.disabledText : null]}>{props.children}</Text>
     </View>
   );
 

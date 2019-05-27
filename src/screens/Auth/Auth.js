@@ -149,7 +149,7 @@ class AuthScreen extends Component {
           </MainText>
           <ButtonWithBackground 
             onPress={this.switchAuthModeHandler} 
-            color='#29aaf4'
+            backgroundColor='#29aaf4'
           >
             Switch to {authMode === 'login' ? 'Sign Up' : 'Login'} 
           </ButtonWithBackground>
@@ -186,7 +186,7 @@ class AuthScreen extends Component {
 
           <ButtonWithBackground 
             onPress={this.loginHanlder} 
-            color='#29aaf4'
+            backgroundColor='#29aaf4'
             disabled={
               !controls.confirmPassword.valid && authMode === 'signup' || 
               !controls.password.valid || 
@@ -196,7 +196,7 @@ class AuthScreen extends Component {
             Submit
           </ButtonWithBackground>
           
-          <ButtonWithBackground color='#24ffa8' onPress={this.loginHanlder}>
+          <ButtonWithBackground backgroundColor='#24ffa8' onPress={this.loginHanlder}>
             Submit [DEVELOPMENT ONLY] 
           </ButtonWithBackground>
 
