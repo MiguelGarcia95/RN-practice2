@@ -1,15 +1,27 @@
 import React, {Component} from 'react';
-import {View, Button, StyleSheet} from 'react-native';
+import {View, Button, StyleSheet, Dimensions} from 'react-native';
 import MapView from 'react-native-maps';
 
 import MainText from '../UI/MainText/MainText';
 
 class PickLocation extends Component {
+  state = {
+    focusedLocation: {
+      latitude: 37.7900352,
+      longitude: -122.4013726,
+      latitudeDelta: 0.0122,
+      longitudeDelta: 
+        Dimensions.get('window').width / 
+        Dimensions.get('window'.height) * 
+        0.0122,
+    }
+  }
+
   render() {
     return(
       <View style={styles.container}>
         <MapView 
-          initialRegion={}
+          initialRegion={this.state.focusedLocation}
           style={styles.map}
         />
         <View style={styles.button}>
