@@ -28,13 +28,9 @@ class PlaceDetail extends Component {
         <Text style={styles.placeName} >{selectedPlace.name}</Text>
         <MapView 
           initialRegion={mapRegion}
-          // region={this.state.focusedLocation}
           provider={PROVIDER_GOOGLE} 
           style={styles.map}
-          // onPress={this.pickLocationHandler}
-          // ref={ref => this.map = ref}
         >
-          {/* {marker} */}
           <MapView.Marker coordinate={mapRegion} />
         </MapView>
         <View> 
