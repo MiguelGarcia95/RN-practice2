@@ -12,7 +12,7 @@ class PickLocation extends Component {
       latitudeDelta: 0.0122,
       longitudeDelta: 
         Dimensions.get('window').width / 
-        Dimensions.get('window'.height) * 
+        Dimensions.get('window').height * 
         0.0122,
     }
   }
