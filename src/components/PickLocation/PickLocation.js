@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {View, Button, StyleSheet, Dimensions} from 'react-native';
-import MapView from 'react-native-maps';
+import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 
 import MainText from '../UI/MainText/MainText';
 
@@ -21,7 +21,8 @@ class PickLocation extends Component {
     return(
       <View style={styles.container}>
         <MapView 
-          initialRegion={this.state.focusedLocation}
+          region={this.state.focusedLocation}
+          provider={PROVIDER_GOOGLE} 
           style={styles.map}
         />
         <View style={styles.button}>
