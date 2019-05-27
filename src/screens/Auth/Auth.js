@@ -178,7 +178,11 @@ class AuthScreen extends Component {
           <ButtonWithBackground 
             onPress={this.loginHanlder} 
             color='#29aaf4'
-            disabled={!controls.confirmPassword.valid || !controls.password.valid || !controls.email.valid}
+            disabled={
+              !controls.confirmPassword.valid && authMode === 'signup' || 
+              !controls.password.valid || 
+              !controls.email.valid
+            }
           >
             Submit
           </ButtonWithBackground>
