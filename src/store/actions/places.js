@@ -15,6 +15,7 @@ export const addPlace = (placeName, location, image) => {
     })
     .catch(err => {
       console.log(err);
+      alert('Something bad happened!');
       dispatch(uiStopLoading());
     })
     .then(res => res.json())
@@ -35,6 +36,7 @@ export const addPlace = (placeName, location, image) => {
     })
     .catch(err => {
       console.log(err);
+      alert('Something bad happened!');
       dispatch(uiStopLoading());
     })
     .then(res => res.json())
