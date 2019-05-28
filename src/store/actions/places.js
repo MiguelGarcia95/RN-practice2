@@ -65,9 +65,17 @@ export const getPlaces = () => {
     })
     .then(res => res.json)
     .then(parsedRes => {
-      dispatch({
-
-      })
+      const places = [];
+      for(let key in parsedRes) {
+        places.push({
+          ...parsedRes[key],
+          image: {
+            uri: parsedRes[key].image
+          },
+          id: key
+        })
+      }
+      dispatch(setPlaces(places))
     });
   }
 }
