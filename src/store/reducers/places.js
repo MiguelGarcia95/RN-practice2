@@ -11,7 +11,6 @@ const reducer = (state = initialState, action) => {
         ...state,
         places: action.payload.places
       }
-
     default:
       return state;
   }

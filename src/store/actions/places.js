@@ -63,7 +63,7 @@ export const getPlaces = () => {
       alert('Something bad happened!');
       console.log(err)
     })
-    .then(res => res.json)
+    .then(res => res.json())
     .then(parsedRes => {
       const places = [];
       for(let key in parsedRes) {

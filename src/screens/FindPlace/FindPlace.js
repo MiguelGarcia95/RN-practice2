@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {View, TouchableOpacity, Text, StyleSheet, Animated} from 'react-native';
 import {connect} from 'react-redux';
+import {getPlaces} from '../../store/actions';
 
 import List from '../../components/List/List';
 
@@ -20,7 +21,7 @@ class FindPlaceScreen extends Component {
   } 
 
   componentDidMount() {
-    
+    this.props.onGetPlaces();
   }
   
   onNavigatorEvent = event => {
@@ -128,5 +129,11 @@ const mapStateToProps = state => {
   }
 }
 
+const mapDispatchTopProps = dispatch => {
+  return {
+    onGetPlaces: () => dispatch(getPlaces())
+  }
+}
 
-export default connect(mapStateToProps)(FindPlaceScreen);
+
+export default connect(mapStateToProps, mapDispatchTopProps)(FindPlaceScreen);
