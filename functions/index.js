@@ -24,20 +24,21 @@ exports.storeImage = functions.https.onRequest((request, response) => {
       return response.status(500).json({error: err});
     });
     const bucket = gcs.bucket("my-project-rn-te-1558941296674.appspot.com");
-
     const uuid = UUID();
 
     bucket.upload("/tmp/uploaded-image.jpg", {
       uploadType: "media",
       destination: "/places/" + uuid + ".jpg",
-      metaData: {
-        contentType: "image/jpeg",
-        firebaseStorageDownloadTokens: uuid
+      metadata: {
+        metadata: {
+          contentType: "image/jpeg",
+          firebaseStorageDownloadTokens: uuid
+        },
       }
     }, (err, file) => {
       if (!err) {
         response.status(201).json({
-          imageUrl: "https://firebasestorage.googleapis.com/v0/b" + 
+          imageUrl: "https://firebasestorage.googleapis.com/v0/b/" + 
             bucket.name + 
             "/o/" + 
             encodeURIComponent(file.name) + 
