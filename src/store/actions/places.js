@@ -1,17 +1,22 @@
 import * as actionTypes from './actionTypes';
 import {ENTRY_POINT} from '../../../env';
+import {uiStartLoading, uiStopLoading} from './index';
 
 export const addPlace = (placeName, location, image) => {
   return dispatch => {
 
     // POST call to firebase storeImage function
+    dispatch(uiStartLoading());
     fetch('https://us-central1-my-project-rn-te-1558941296674.cloudfunctions.net/storeImage', {
       method: 'POST',
       body: JSON.stringify({
         image: image.base64
       })
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+      console.log(err);
+      dispatch(uiStopLoading());
+    })
     .then(res => res.json())
     .then(parsedRes => {
 
@@ -28,10 +33,14 @@ export const addPlace = (placeName, location, image) => {
         body: JSON.stringify(placeData)
       })
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+      console.log(err);
+      dispatch(uiStopLoading());
+    })
     .then(res => res.json())
     .then(parsed => {
       console.log(parsed);
+      dispatch(uiStopLoading());
     })
  
 
