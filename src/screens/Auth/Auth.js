@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {
-  View, Dimensions,  ImageBackground, StyleSheet, KeyboardAvoidingView, Keyboard, TouchableWithoutFeedback
+  View, Dimensions,  ImageBackground, StyleSheet, KeyboardAvoidingView, Keyboard, TouchableWithoutFeedback, ActivityIndicator
 } from 'react-native';
 
 import startMainTabs from '../MainTabs/startMainTabs';
@@ -120,6 +120,21 @@ class AuthScreen extends Component {
     const {portraitMode, controls, authMode} = this.state;
     let headingText = null;
     let confirmPasswordControl = null;
+    let submitButton = (
+      <ButtonWithBackground 
+        onPress={this.loginHanlder} 
+        backgroundColor='#29aaf4'
+        disabled={
+          !controls.confirmPassword.valid && authMode === 'signup' || 
+          !controls.password.valid || 
+          !controls.email.valid
+        }
+      >
+        Submit
+      </ButtonWithBackground>
+    )
+
+    
 
     if (portraitMode) {
       headingText = authMode === 'login' ? 'Please Log In' : 'Please Sign Up'
@@ -184,17 +199,7 @@ class AuthScreen extends Component {
             </View> 
           </TouchableWithoutFeedback>
 
-          <ButtonWithBackground 
-            onPress={this.loginHanlder} 
-            backgroundColor='#29aaf4'
-            disabled={
-              !controls.confirmPassword.valid && authMode === 'signup' || 
-              !controls.password.valid || 
-              !controls.email.valid
-            }
-          >
-            Submit
-          </ButtonWithBackground>
+          {submitButton}
           
           <ButtonWithBackground backgroundColor='#24ffa8' onPress={this.loginHanlder}>
             Submit [DEVELOPMENT ONLY] 
@@ -242,10 +247,16 @@ const styles = StyleSheet.create({
   }
 });
 
+const mapStateToProps = state => {
+  return {
+    isLoading: state.ui.isLoading
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     onLogin: authData => dispatch(tryAuth(authData))
   }
 }
 
-export default connect(null, mapDispatchToProps)(AuthScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(AuthScreen);
