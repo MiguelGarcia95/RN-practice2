@@ -124,6 +124,27 @@ class SharePlaceScreen extends Component {
 
   render() {
     const {controls} = this.state;
+
+    let submitButton = (
+      <ButtonWithBackground 
+        color='#aa1939' 
+        backgroundColor='#24ffa8' 
+        onPress={this.placeAddedHandler}
+        disabled={
+          !controls.location.valid || 
+          !controls.placeName.valid ||
+          !controls.image.valid
+        }
+      >
+        Share place
+      </ButtonWithBackground>
+    );
+    
+    if (this.props.isLoading) {
+      submitButton = 'loading...'
+    }
+
+
     return(
       <ScrollView>
         <View style={styles.container} > 
@@ -145,18 +166,7 @@ class SharePlaceScreen extends Component {
 
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <KeyboardAvoidingView style={styles.button} behavior='padding'>
-              <ButtonWithBackground 
-                color='#aa1939' 
-                backgroundColor='#24ffa8' 
-                onPress={this.placeAddedHandler}
-                disabled={
-                  !controls.location.valid || 
-                  !controls.placeName.valid ||
-                  !controls.image.valid
-                }
-              >
-                Share place
-              </ButtonWithBackground>
+              {submitButton}
             </KeyboardAvoidingView>
           </TouchableWithoutFeedback>
 
