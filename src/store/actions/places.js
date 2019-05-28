@@ -1,4 +1,5 @@
 import * as actionTypes from './actionTypes';
+import {ENTRY_POINT} from '../../../env';
 
 export const addPlace = (placeName, location, image) => {
   return {
