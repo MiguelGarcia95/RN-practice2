@@ -134,6 +134,9 @@ class AuthScreen extends Component {
       </ButtonWithBackground>
     )
 
+    if (this.props.isLoading) {
+      submitButton = <ActivityIndicator />
+    }
     
 
     if (portraitMode) {
