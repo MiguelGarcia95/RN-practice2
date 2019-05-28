@@ -57,4 +57,4 @@ buck-out/
 
 #apis
 
-API_KEYS.js
+android/app/src/main/AndroidManifest.xml
