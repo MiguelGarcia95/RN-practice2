@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {View, StyleSheet, ScrollView, KeyboardAvoidingView, TouchableWithoutFeedback} from 'react-native';
+import {View, StyleSheet, ScrollView, KeyboardAvoidingView, TouchableWithoutFeedback, ActivityIndicator} from 'react-native';
 import { Keyboard } from 'react-native';
 
 import {addPlace} from '../../store/actions';
@@ -141,7 +141,7 @@ class SharePlaceScreen extends Component {
     );
     
     if (this.props.isLoading) {
-      submitButton = 'loading...'
+      submitButton = <ActivityIndicator  />
     }
 
 
