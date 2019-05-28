@@ -100,4 +100,27 @@ export const setPlaces = places => {
   }
 }
 
+export const deletePlace = key => {
+  return dispatch => {
+    dispatch(authGetToken())
+    .then(token => {
+      dispatch(removePlace(key))
+      return fetch(`${ENTRY_POINT}/places/${key}.json?auth=${token}`, {
+        method: 'DELETE'
+      })
+    })
+    .catch(() => {
+      alert("No Valid Token Found");
+    })
+  }
+}
+
+export const removePlace = key => {
+  return {
+    type: actionTypes.REMOVE_PLACE,
+    payload: {
+      key: key
+    }
+  }
+}
 
