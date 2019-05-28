@@ -4,7 +4,7 @@ const initialState = {
   isLoading: false
 };
 
-const reducer = (state =initialState, action) {
+const reducer = (state = initialState, action) => {
   switch(action.type) {
     case actionTypes.UI_START_LOADING:
       return {
