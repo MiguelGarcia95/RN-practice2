@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes';
 import {ENTRY_POINT} from '../../../env';
-import {uiStartLoading, uiStopLoading} from './index';
+import {uiStartLoading, uiStopLoading, authGetToken} from './index';
 
 export const addPlace = (placeName, location, image) => {
   return dispatch => {
@@ -57,34 +57,37 @@ export const deletePlace = key => {
 }
 
 export const getPlaces = () => {
-  return (dispatch, getState) => {
-    const token = getState().auth.token;
-    if (!token) {
-      return;
-    }
-    fetch(`${ENTRY_POINT}/places.json?auth=${token}`)
-    .then(res => res.json())
-    .then(parsedRes => {
-      if (parsedRes.error) {
+  return dispatch => {
+    dispatch(authGetToken())
+      .then(token => {
+        return fetch(`${ENTRY_POINT}/places.json?auth=${token}`)
+      })
+      .catch(() => {
+        alert("No Valid Token Found");
+      })
+      .then(res => res.json())
+      .then(parsedRes => {
+        if (parsedRes.error) {
+          alert('Something bad happened!');
+          console.log(err)
+        }
+        const places = [];
+        for(let key in parsedRes) {
+          places.push({
+            ...parsedRes[key],
+            image: {
+              uri: parsedRes[key].image
+            },
+            key: key
+          })
+        }
+        dispatch(setPlaces(places))
+      })
+      .catch(err => {
         alert('Something bad happened!');
         console.log(err)
-      }
-      const places = [];
-      for(let key in parsedRes) {
-        places.push({
-          ...parsedRes[key],
-          image: {
-            uri: parsedRes[key].image
-          },
-          key: key
-        })
-      }
-      dispatch(setPlaces(places))
-    })
-    .catch(err => {
-      alert('Something bad happened!');
-      console.log(err)
-    })
+      })
+
   }
 }
 
