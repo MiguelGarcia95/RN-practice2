@@ -33,7 +33,7 @@ export const addPlace = (placeName, location, image) => {
     .then(parsed => {
       console.log(parsed);
     })
-
+ 
 
 
      
