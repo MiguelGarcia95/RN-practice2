@@ -22,9 +22,11 @@ DerivedData
 *.xcuserstate
 project.xcworkspace
 
+
 # Android/IntelliJ
 #
 build/
+src/main/AndroidManifest.xml
 .idea
 .gradle
 local.properties
@@ -56,5 +58,3 @@ buck-out/
 *.jsbundle
 
 #apis
-
-android/app/src/main/AndroidManifest.xml

@@ -119,9 +119,13 @@ android {
         }
     }
     buildTypes {
+        debug {
+            resValue 'string', "api_key", PracticeApp_MapApiKey
+        }
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            resValue 'string', "api_key", PracticeApp_MapApiKey
         }
     }
     // applicationVariants are e.g. debug, release
