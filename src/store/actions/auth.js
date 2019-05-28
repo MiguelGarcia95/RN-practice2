@@ -5,14 +5,18 @@ import startMainTabs from '../../screens/MainTabs/startMainTabs';
 
 export const tryAuth = (authData, authMode) => {
   return dispatch => {
-    dispatch(authSignup(authData, authMode));
+    dispatch(uiStartLoading());
+    if (authMode === 'login') {
+      dispatch(authSignup(authData, 'verifyPassword'));
+    } else {
+      dispatch(authSignup(authData, 'signupNewUser'));
+    }
   }
 };
 
-export const authSignup = (authData, authMode) => {
+export const authSignup = (authData, endpoint) => {
   return dispatch => {
-    dispatch(uiStartLoading());
-    fetch(`${AUTH_ENTRY}/signupNewUser?key=${AUTH_APIKEY}`, {
+    fetch(`${AUTH_ENTRY}/${endpoint}?key=${AUTH_APIKEY}`, {
       method: 'POST',
       body: JSON.stringify({
         email: authData.email,
@@ -38,8 +42,4 @@ export const authSignup = (authData, authMode) => {
       }
     })
   }
-}
-
-export const authSignin = authData => {
-
 }
