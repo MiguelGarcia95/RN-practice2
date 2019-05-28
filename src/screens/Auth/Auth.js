@@ -4,7 +4,7 @@ import {
   View, Dimensions,  ImageBackground, StyleSheet, KeyboardAvoidingView, Keyboard, TouchableWithoutFeedback, ActivityIndicator
 } from 'react-native';
 
-import startMainTabs from '../MainTabs/startMainTabs';
+// import startMainTabs from '../MainTabs/startMainTabs';
 import DefaultInput from '../../components/UI/DefaultInput/DefaultInput';
 import HeadingText from '../../components/UI/HeadingText/HeadingText';
 import MainText from '../../components/UI/MainText/MainText';
@@ -60,13 +60,12 @@ class AuthScreen extends Component {
     })
   }
 
-  loginHanlder = () => {
+  authHandler = () => {
     const authData = {
       email: this.state.controls.email.value,
       password: this.state.controls.password.value,
     }
-    this.props.onLogin(authData);
-    startMainTabs();
+    this.props.onTryAuth(authData, this.state.authMode);
   }
 
   updateInputState = (key, value) => {
@@ -122,7 +121,7 @@ class AuthScreen extends Component {
     let confirmPasswordControl = null;
     let submitButton = (
       <ButtonWithBackground 
-        onPress={this.loginHanlder} 
+        onPress={this.authHandler} 
         backgroundColor='#29aaf4'
         disabled={
           !controls.confirmPassword.valid && authMode === 'signup' || 
@@ -204,7 +203,7 @@ class AuthScreen extends Component {
 
           {submitButton}
           
-          <ButtonWithBackground backgroundColor='#24ffa8' onPress={this.loginHanlder}>
+          <ButtonWithBackground backgroundColor='#24ffa8' onPress={this.authHandler}>
             Submit [DEVELOPMENT ONLY] 
           </ButtonWithBackground>
 
@@ -258,7 +257,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLogin: authData => dispatch(tryAuth(authData))
+    onTryAuth: (authData, authMode) => dispatch(tryAuth(authData, authMode))
   }
 }
 
