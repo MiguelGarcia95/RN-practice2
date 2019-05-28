@@ -36,11 +36,11 @@ export const authSignup = (authData, endpoint) => {
     .then(parsedRes => {
       dispatch(uiStopLoading());
       console.log(parsedRes)
-      if (parsedRes.error) {
+      if (parsedRes.error || !parsedRes.idToken) {
         alert('AUTH FAILED! TRY AGAIN!')
       } else {
-        dispatch(authSetToken(token));
         startMainTabs();
+        dispatch(authSetToken(parsedRes.idToken));
       }
     })
   }

@@ -61,6 +61,10 @@ export const getPlaces = () => {
     fetch(`${ENTRY_POINT}/places.json`)
     .then(res => res.json())
     .then(parsedRes => {
+      if (parsedRes.error) {
+        alert('Something bad happened!');
+        console.log(err)
+      }
       const places = [];
       for(let key in parsedRes) {
         places.push({
