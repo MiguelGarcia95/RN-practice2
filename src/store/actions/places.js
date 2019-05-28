@@ -98,26 +98,24 @@ export const setPlaces = places => {
 
 export const deletePlace = key => {
   return dispatch => {
-    dispatch(removePlace(key))
-
-    // dispatch(authGetToken())
-    // .catch(() => {
-    //   alert("No Valid Token Found");
-    // })
-    // .then(token => {
-    //   dispatch(removePlace(key))
-    //   return fetch(`${ENTRY_POINT}/places/${key}.json?auth=${token}`, {
-    //     method: 'DELETE'
-    //   })
-    // })
-    // .then(res => res.json())
-    // .then(parsedRes => {
-    //   console.log("DONE!")
-    // })
-    // .catch(err => {
-    //   alert('Could not delete');
-    //   console.log(err);
-    // });
+    dispatch(authGetToken())
+    .catch(() => {
+      alert("No Valid Token Found");
+    })
+    .then(token => {
+      dispatch(removePlace(key))
+      return fetch(`${ENTRY_POINT}/places/${key}.json?auth=${token}`, {
+        method: 'DELETE'
+      })
+    })
+    .then(res => res.json())
+    .then(parsedRes => {
+      console.log("DONE!")
+    })
+    .catch(err => {
+      alert('Could not delete');
+      console.log(err);
+    });
   }
 }
 
