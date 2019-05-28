@@ -57,8 +57,12 @@ export const deletePlace = key => {
 }
 
 export const getPlaces = () => {
-  return dispatch => {
-    fetch(`${ENTRY_POINT}/places.json`)
+  return (dispatch, getState) => {
+    const token = getState().auth.token;
+    if (!token) {
+      return;
+    }
+    fetch(`${ENTRY_POINT}/places.json?auth=${token}`)
     .then(res => res.json())
     .then(parsedRes => {
       if (parsedRes.error) {
