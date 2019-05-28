@@ -35,11 +35,22 @@ export const authSignup = (authData, endpoint) => {
     .then(res => res.json())
     .then(parsedRes => {
       dispatch(uiStopLoading());
+      console.log(parsedRes)
       if (parsedRes.error) {
         alert('AUTH FAILED! TRY AGAIN!')
       } else {
+        dispatch(authSetToken(token));
         startMainTabs();
       }
     })
+  }
+}
+
+export const authSetToken = token => {
+  return {
+    type: actionTypes.AUTH_SET_TOKEN,
+    payload: {
+      token: token
+    }
   }
 }

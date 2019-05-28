@@ -34,14 +34,14 @@ export const addPlace = (placeName, location, image) => {
         body: JSON.stringify(placeData)
       })
     })
-    .catch(err => {
-      console.log(err);
-      alert('Something bad happened!');
-      dispatch(uiStopLoading());
-    })
     .then(res => res.json())
     .then(parsed => {
       console.log(parsed);
+      dispatch(uiStopLoading());
+    })
+    .catch(err => {
+      console.log(err);
+      alert('Something bad happened!');
       dispatch(uiStopLoading());
     })
   };
