@@ -4,11 +4,7 @@ import {ENTRY_POINT} from '../../../env';
 export const addPlace = (placeName, location, image) => {
   return dispatch => {
 
-    const placeData = {
-      name: placeName,
-      location:  location
-    };
-
+    // POST call to firebase storeImage function
     fetch('https://us-central1-my-project-rn-te-1558941296674.cloudfunctions.net/storeImage', {
       method: 'POST',
       body: JSON.stringify({
@@ -18,18 +14,26 @@ export const addPlace = (placeName, location, image) => {
     .catch(err => console.log(err))
     .then(res => res.json())
     .then(parsedRes => {
-      console.log(parsedRes)
+
+      // Once Image is stored, get url
+      const placeData = {
+        name: placeName,
+        location:  location,
+        image: parsedRes.imageUrl
+      };
+      
+      // create place
+      return fetch(`${ENTRY_POINT}/places.json`, {
+        method: "POST",
+        body: JSON.stringify(placeData)
+      })
+    })
+    .catch(err => console.log(err))
+    .then(res => res.json())
+    .then(parsed => {
+      console.log(parsed);
     })
 
-    // fetch(`${ENTRY_POINT}/places.json`, {
-    //   method: "POST",
-    //   body: JSON.stringify(placeData)
-    // })
-    // .catch(err => console.log(err))
-    // .then(res => res.json())
-    // .then(parsed => {
-    //   console.log(parsed);
-    // })
 
 
      
