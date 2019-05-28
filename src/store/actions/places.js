@@ -4,13 +4,19 @@ import {uiStartLoading, uiStopLoading, authGetToken} from './index';
 
 export const addPlace = (placeName, location, image) => {
   return dispatch => {
-
-    // POST call to firebase storeImage function
     dispatch(uiStartLoading());
-    fetch('https://us-central1-my-project-rn-te-1558941296674.cloudfunctions.net/storeImage', {
-      method: 'POST',
-      body: JSON.stringify({
-        image: image.base64
+
+    dispatch(authGetToken())
+    .catch(() => {
+      alert("No Valid Token Found");
+    })
+    .then(token => {
+    // POST call to firebase storeImage function
+      return fetch('https://us-central1-my-project-rn-te-1558941296674.cloudfunctions.net/storeImage', {
+        method: 'POST',
+        body: JSON.stringify({
+          image: image.base64
+        })
       })
     })
     .catch(err => {
@@ -47,47 +53,37 @@ export const addPlace = (placeName, location, image) => {
   };
 }
 
-export const deletePlace = key => {
-  return {
-    type: actionTypes.DELETE_PLACE,
-    payload: {
-      placeKey: key
-    }
-  };
-}
-
 export const getPlaces = () => {
   return dispatch => {
     dispatch(authGetToken())
-      .then(token => {
-        return fetch(`${ENTRY_POINT}/places.json?auth=${token}`)
-      })
-      .catch(() => {
-        alert("No Valid Token Found");
-      })
-      .then(res => res.json())
-      .then(parsedRes => {
-        if (parsedRes.error) {
-          alert('Something bad happened!');
-          console.log(err)
-        }
-        const places = [];
-        for(let key in parsedRes) {
-          places.push({
-            ...parsedRes[key],
-            image: {
-              uri: parsedRes[key].image
-            },
-            key: key
-          })
-        }
-        dispatch(setPlaces(places))
-      })
-      .catch(err => {
+    .catch(() => {
+      alert("No Valid Token Found");
+    })
+    .then(token => {
+      return fetch(`${ENTRY_POINT}/places.json?auth=${token}`)
+    })
+    .then(res => res.json())
+    .then(parsedRes => {
+      if (parsedRes.error) {
         alert('Something bad happened!');
         console.log(err)
-      })
-
+      }
+      const places = [];
+      for(let key in parsedRes) {
+        places.push({
+          ...parsedRes[key],
+          image: {
+            uri: parsedRes[key].image
+          },
+          key: key
+        })
+      }
+      dispatch(setPlaces(places))
+    })
+    .catch(err => {
+      alert('Something bad happened!');
+      console.log(err)
+    })
   }
 }
 
@@ -102,16 +98,26 @@ export const setPlaces = places => {
 
 export const deletePlace = key => {
   return dispatch => {
-    dispatch(authGetToken())
-    .then(token => {
-      dispatch(removePlace(key))
-      return fetch(`${ENTRY_POINT}/places/${key}.json?auth=${token}`, {
-        method: 'DELETE'
-      })
-    })
-    .catch(() => {
-      alert("No Valid Token Found");
-    })
+    dispatch(removePlace(key))
+
+    // dispatch(authGetToken())
+    // .catch(() => {
+    //   alert("No Valid Token Found");
+    // })
+    // .then(token => {
+    //   dispatch(removePlace(key))
+    //   return fetch(`${ENTRY_POINT}/places/${key}.json?auth=${token}`, {
+    //     method: 'DELETE'
+    //   })
+    // })
+    // .then(res => res.json())
+    // .then(parsedRes => {
+    //   console.log("DONE!")
+    // })
+    // .catch(err => {
+    //   alert('Could not delete');
+    //   console.log(err);
+    // });
   }
 }
 

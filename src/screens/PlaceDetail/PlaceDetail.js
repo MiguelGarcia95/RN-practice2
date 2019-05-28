@@ -2,9 +2,8 @@ import React, {Component} from 'react'
 import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons';
 import {connect} from 'react-redux';
+import {deletePlace} from '../../store/actions/index';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
-
-import {deletePlace} from '../../store/actions';
 
 class PlaceDetail extends Component {
   placeDeletedHandler = () => {

@@ -11,6 +11,17 @@ const reducer = (state = initialState, action) => {
         ...state,
         places: action.payload.places
       }
+    case actionTypes.REMOVE_PLACE:
+      const places = state.places.reduce((placesArray, place) => {
+        if (place.key !== action.payload.key) {
+          placesArray.push(place);
+        }
+        return placesArray;
+      }, [])
+      return {
+        ...state,
+        places: places
+      }
     default:
       return state;
   }
