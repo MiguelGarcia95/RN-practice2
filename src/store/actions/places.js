@@ -59,10 +59,6 @@ export const deletePlace = key => {
 export const getPlaces = () => {
   return dispatch => {
     fetch(`${ENTRY_POINT}/places.json`)
-    .catch(err => {
-      alert('Something bad happened!');
-      console.log(err)
-    })
     .then(res => res.json())
     .then(parsedRes => {
       const places = [];
@@ -76,7 +72,11 @@ export const getPlaces = () => {
         })
       }
       dispatch(setPlaces(places))
-    });
+    })
+    .catch(err => {
+      alert('Something bad happened!');
+      console.log(err)
+    })
   }
 }
 
