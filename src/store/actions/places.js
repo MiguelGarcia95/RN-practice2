@@ -44,19 +44,6 @@ export const addPlace = (placeName, location, image) => {
       console.log(parsed);
       dispatch(uiStopLoading());
     })
- 
-
-
-     
-    // dispatch({
-    //   type: actionTypes.ADD_PLACE,
-    //   payload: {
-    //     placeName: placeName,
-    //     location: location,
-    //     image: image
-    //   }
-    // })
-
   };
 }
 
@@ -67,6 +54,31 @@ export const deletePlace = key => {
       placeKey: key
     }
   };
+}
+
+export const getPlaces = () => {
+  return dispatch => {
+    fetch(`${ENTRY_POINT}/places.json`)
+    .catch(err => {
+      alert('Something bad happened!');
+      console.log(err)
+    })
+    .then(res => res.json)
+    .then(parsedRes => {
+      dispatch({
+
+      })
+    });
+  }
+}
+
+export const setPlaces = places => {
+  return {
+    type: actionTypes.SET_PLACES,
+    payload: {
+      places: places
+    }
+  }
 }
 
 
