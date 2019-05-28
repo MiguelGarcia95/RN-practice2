@@ -1,14 +1,16 @@
-const functions = require('firebase-functions');
-const cors = require('cors')({origin: true});
-const fs = require('fs');
-const UUID = require('uuid-v4');
+const functions = require("firebase-functions");
+const cors = require("cors")({origin: true});
+const fs = require("fs");
+const UUID = require("uuid-v4");
 
 const gcconfig = {
-  projectId: 'my-project-rn-te-1558941296674',
-  keyFilename: 'practice_places.json',
+  projectId: "my-project-rn-te-1558941296674",
+  keyFilename: "practice_places.json"
 };
 
-const gcs = require('@google-cloud/storage')(gcconfig);
+const {Storage} = require("@google-cloud/storage");
+const gcs = new Storage(gcconfig)
+// const gcs = require("@google-cloud/storage")(gcconfig);
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
