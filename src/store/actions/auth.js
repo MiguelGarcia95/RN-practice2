@@ -1,12 +1,29 @@
 import * as actionTypes from './actionTypes';
-import {AUTH_APIKEY} from '../../../env';
-
-// `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyCustomToken?key=${AUTH_APIKEY}`
+import {AUTH_APIKEY, AUTH_ENTRY} from '../../../env';
 
 export const tryAuth = authData => {
-  return {
-    type: actionTypes.TRY_AUTH,
-    authData: authData
+  return dispatch => {
+    dispatch(authSignup(authData));
   }
 };
 
+export const authSignup = authData => {
+  return dispatch => {
+    fetch(`${AUTH_ENTRY}/signupNewUser?key=${AUTH_APIKEY}`, {
+      method: 'POST',
+      body: JSON.stringify({
+        email: authData.email,
+        password: authData.password,
+        returnSecureToken: true,
+      })
+    })
+    .catch(err => {
+      console.log(err);
+      alert('AUTH FAILED! TRY AGAIN!');
+    })
+    .then(res => res.json())
+    .then(parsedRes => {
+      console.log(parsedRes);
+    })
+  }
+}
