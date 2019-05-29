@@ -52,6 +52,8 @@ export const addPlace = (placeName, location, image) => {
 
       // NOT OPTIMAL
       dispatch(getPlaces());
+
+      dispatch(placeAdded())
     })
     .catch(err => {
       console.log(err);
@@ -59,6 +61,12 @@ export const addPlace = (placeName, location, image) => {
       dispatch(uiStopLoading());
     })
   };
+}
+
+export const placeAdded = () => {
+  return {
+    type: actionTypes.PLACE_ADDED
+  }
 }
 
 export const getPlaces = () => {
