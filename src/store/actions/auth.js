@@ -52,10 +52,11 @@ export const authStoreToken = (token, expiresIn, refreshToken) => {
   return dispatch => {
     dispatch(authSetToken(token));
     const now = new Date();
-    const expiryDate = now.getTime() + expiresIn * 1000;
+    const expiryDate = now.getTime() + 20 * 1000;
+    // const expiryDate = now.getTime() + expiresIn * 1000;
     AsyncStorage.setItem("p:auth:token", token);
     AsyncStorage.setItem("p:auth:refreshToken", refreshToken);
-    // AsyncStorage.setItem("p:auth:expiryDate", expiryDate.toString());
+    AsyncStorage.setItem("p:auth:expiryDate", expiryDate.toString());
   }
 }
 
@@ -110,11 +111,15 @@ export const authGetToken = () => {
             body: "grant_type=refresh_token&refresh_token=" + refreshToken
           })
         })
-        .then(res => console.log(res))
-        .catch(err => {
-          reject();
-          dispatch(authClearStorage())
-        });
+        .then(res => res.json())
+        .then(parsedRes => {
+          if (parsedRes.id_token) {
+            console.log('refresh worked'); 
+            dispatch(authStoreToken(parsedRes.id_token, parsedRes.expires_in, parsedRes.refresh_token))
+          } else {
+            dispatch(authClearStorage())
+          }
+        })
       
     });
     return promise;
