@@ -35,13 +35,7 @@ export const authSignup = (authData, endpoint) => {
       dispatch(uiStopLoading());
       alert('AUTH FAILED! TRY AGAIN!');
     })
-    .then(res => {
-      if (res.ok) {
-        res.json()
-      } else {
-        throw(new Error())
-      }
-    })
+    .then(res => res.json())
     .then(parsedRes => {
       dispatch(uiStopLoading());
       console.log(parsedRes)
@@ -120,13 +114,7 @@ export const authGetToken = () => {
             body: "grant_type=refresh_token&refresh_token=" + refreshToken
           })
         })
-        .then(res => {
-          if (res.ok) {
-            res.json()
-          } else {
-            throw(new Error())
-          }
-        })
+        .then(res => res.json())
         .then(parsedRes => {
           if (parsedRes.id_token) {
             console.log('refresh worked'); 
