@@ -35,7 +35,13 @@ export const addPlace = (placeName, location, image) => {
       alert('Something bad happened!');
       dispatch(uiStopLoading());
     })
-    .then(res => res.json())
+    .then(res => {
+      if (res.ok) {
+        res.json()
+      } else {
+        throw(new Error())
+      }
+    })
     .then(parsedRes => {
 
       // Once Image is stored, get url
@@ -51,7 +57,13 @@ export const addPlace = (placeName, location, image) => {
         body: JSON.stringify(placeData)
       })
     })
-    .then(res => res.json())
+    .then(res => {
+      if (res.ok) {
+        res.json()
+      } else {
+        throw(new Error())
+      }
+    })
     .then(parsed => {
       console.log(parsed);
       dispatch(uiStopLoading());
@@ -80,7 +92,13 @@ export const getPlaces = () => {
     .then(token => {
       return fetch(`${ENTRY_POINT}/places.json?auth=${token}`)
     })
-    .then(res => res.json())
+    .then(res => {
+      if (res.ok) {
+        res.json()
+      } else {
+        throw(new Error())
+      }
+    })
     .then(parsedRes => {
       if (parsedRes.error) {
         alert('Something bad happened!');
@@ -126,7 +144,13 @@ export const deletePlace = key => {
         method: 'DELETE'
       })
     })
-    .then(res => res.json())
+    .then(res => {
+      if (res.ok) {
+        res.json()
+      } else {
+        throw(new Error())
+      }
+    })
     .then(parsedRes => {
       console.log("DONE!")
     })

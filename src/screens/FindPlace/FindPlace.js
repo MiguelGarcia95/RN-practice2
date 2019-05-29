@@ -24,6 +24,7 @@ class FindPlaceScreen extends Component {
     if (event.type === 'ScreenChangedEvent') {
       if (event.id === 'willAppear') {
         this.props.onGetPlaces();
+        this.setState({placesLoaded: false})
       }
     }
     if(event.type === 'NavBarButtonPress') {
