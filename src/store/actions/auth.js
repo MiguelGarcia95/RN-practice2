@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-community/async-storage';
 
 import * as actionTypes from './actionTypes';
-import {AUTH_APIKEY, AUTH_ENTRY} from '../../../env';
+import {AUTH_APIKEY, AUTH_ENTRY, AUTH_REFRESH_TOKEN} from '../../../env';
 import {uiStartLoading, uiStopLoading} from './index';
 import startMainTabs from '../../screens/MainTabs/startMainTabs';
 
@@ -41,19 +41,20 @@ export const authSignup = (authData, endpoint) => {
       if (parsedRes.error || !parsedRes.idToken) {
         alert('AUTH FAILED! TRY AGAIN!')
       } else {
-        dispatch(authStoreToken(parsedRes.idToken, parsedRes.expiresIn));
+        dispatch(authStoreToken(parsedRes.idToken, parsedRes.expiresIn, parsedRes.refreshToken));
         startMainTabs();
       }
     })
   }
 }
 
-export const authStoreToken = (token, expiresIn) => {
+export const authStoreToken = (token, expiresIn, refreshToken) => {
   return dispatch => {
     dispatch(authSetToken(token));
     const now = new Date();
     const expiryDate = now.getTime() + expiresIn * 1000;
     AsyncStorage.setItem("p:auth:token", token);
+    AsyncStorage.setItem("p:auth:refreshToken", refreshToken);
     AsyncStorage.setItem("p:auth:expiryDate", expiryDate.toString());
   }
 }
@@ -98,7 +99,22 @@ export const authGetToken = () => {
       }
     });
     promise.catch(err => {
-      dispatch(authClearStorage())
+      AsyncStorage.getItem("p:auth:refreshToken")
+        .then(refreshToken => {
+          return fetch(`${AUTH_REFRESH_TOKEN}${AUTH_APIKEY}`, {
+            method: 'POST',
+            headers: {
+              "ContentType": "application/x-www-form-urlencoded"
+            },
+            body: "grant_type='refresh_token'&refresh_token=" + refreshToken
+          })
+        })
+        .then(res => console.log(res))
+        .catch(err => {
+          reject();
+          dispatch(authClearStorage())
+        });
+      
     });
     return promise;
   }
