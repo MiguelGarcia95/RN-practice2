@@ -19,10 +19,6 @@ class FindPlaceScreen extends Component {
     }
     this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
   } 
-
-  componentDidMount() {
-    this.props.onGetPlaces();
-  }
   
   onNavigatorEvent = event => {
     if (event.type === 'ScreenChangedEvent') {
