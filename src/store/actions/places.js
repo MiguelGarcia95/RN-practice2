@@ -2,6 +2,12 @@ import * as actionTypes from './actionTypes';
 import {ENTRY_POINT, STORE_IMAGE_URL} from '../../../env';
 import {uiStartLoading, uiStopLoading, authGetToken} from './index';
 
+export const startAddPlace = () => {
+  return {
+    type: actionTypes.START_ADD_PLACE
+  }
+}
+
 export const addPlace = (placeName, location, image) => {
   return dispatch => {
     let authToken;
