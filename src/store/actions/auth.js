@@ -52,8 +52,7 @@ export const authSignup = (authData, endpoint) => {
 export const authStoreToken = (token, expiresIn, refreshToken) => {
   return dispatch => {
     const now = new Date();
-    // const expiryDate = now.getTime() + expiresIn * 1000;
-    const expiryDate = now.getTime() + 5 * 1000;
+    const expiryDate = now.getTime() + expiresIn * 1000;
     dispatch(authSetToken(token, expiryDate));
     AsyncStorage.setItem("p:auth:token", token);
     AsyncStorage.setItem("p:auth:refreshToken", refreshToken);
@@ -143,7 +142,7 @@ export const authAutoSignIn = () =>{
         startMainTabs();
       })
       .catch(err => console.log('Failed to fetch token!'))
-      
+
     // For Testing
     // dispatch(authClearStorage())
   }
