@@ -18,6 +18,27 @@ class SharePlaceScreen extends Component {
     navBarButtonColor: 'orange'
   }
 
+  state = {
+    controls: {
+      placeName: {
+        value: '',
+        touched: false,
+        valid: false,
+        validationRules: {
+          minLength: 2
+        }
+      },
+      location: {
+        value: null,
+        valid: false,
+      },
+      image: {
+        value: null,
+        valid: false,
+      }
+    },
+  }
+
   constructor(props) {
     super(props);
     this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
@@ -71,6 +92,7 @@ class SharePlaceScreen extends Component {
       this.state.controls.image.value,
     )
     this.reset();
+    this.imagePicker.reset();
     Keyboard.dismiss();
   }
 
@@ -149,7 +171,11 @@ class SharePlaceScreen extends Component {
             <HeadingText>Share a Place with Us!</HeadingText>
           </MainText>
 
-          <PickImage onImagePick={this.imagePickedHandler} />
+          <PickImage 
+            onImagePick={this.imagePickedHandler}
+            ref={ref => this.imagePicker = ref} 
+          />
+
           <PickLocation onLocationPick={this.locationPickedHanlder} />
 
           <DefaultInput 
