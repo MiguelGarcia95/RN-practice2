@@ -51,20 +51,22 @@ export const authSignup = (authData, endpoint) => {
 
 export const authStoreToken = (token, expiresIn, refreshToken) => {
   return dispatch => {
-    dispatch(authSetToken(token));
     const now = new Date();
     const expiryDate = now.getTime() + expiresIn * 1000;
+    dispatch(authSetToken(token, expiryDate));
     AsyncStorage.setItem("p:auth:token", token);
     AsyncStorage.setItem("p:auth:refreshToken", refreshToken);
     AsyncStorage.setItem("p:auth:expiryDate", expiryDate.toString());
   }
 }
 
-export const authSetToken = token => {
+export const authSetToken = (token, expiryDate) => {
   return {
     type: actionTypes.AUTH_SET_TOKEN,
     payload: {
-      token: token
+      token: token,
+      expiryDate: expiryDate,
+
     }
   }
 }
