@@ -37,7 +37,7 @@ export const addPlace = (placeName, location, image) => {
     })
     .then(res => {
       if (res.ok) {
-        res.json()
+        return res.json()
       } else {
         throw(new Error())
       }
@@ -59,7 +59,7 @@ export const addPlace = (placeName, location, image) => {
     })
     .then(res => {
       if (res.ok) {
-        res.json()
+        return res.json()
       } else {
         throw(new Error())
       }
@@ -94,7 +94,7 @@ export const getPlaces = () => {
     })
     .then(res => {
       if (res.ok) {
-        res.json()
+        return res.json()
       } else {
         throw(new Error())
       }
@@ -146,7 +146,7 @@ export const deletePlace = key => {
     })
     .then(res => {
       if (res.ok) {
-        res.json()
+        return res.json()
       } else {
         throw(new Error())
       }
