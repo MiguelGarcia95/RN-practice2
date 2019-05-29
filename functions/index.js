@@ -79,9 +79,10 @@ exports.storeImage = functions.https.onRequest((request, response) => {
   });  
 });
 
-exports.deleteImage = functions.database.ref("/places/{placeId}").onDelete(event => {
-  const placeData = event.data.before.val();
-  const imagePath = placeData.imagePath;
+exports.deleteImage = functions.database.ref("/places/{placeId}").onDelete((change, context) => {
+  // console.log(change._data)
+  // const placeData = change.before.val();
+  const imagePath = change._data.imagePath;
   
   const bucket = gcs.bucket("my-project-rn-te-1558941296674.appspot.com");
   return bucket.file(imagePath).delete();
