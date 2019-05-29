@@ -78,3 +78,5 @@ exports.storeImage = functions.https.onRequest((request, response) => {
 
   });  
 });
+
+exports.deleteImage = functions.database.ref("/places/{placeId}")

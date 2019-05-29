@@ -48,7 +48,8 @@ export const addPlace = (placeName, location, image) => {
       const placeData = {
         name: placeName,
         location:  location,
-        image: parsedRes.imageUrl
+        image: parsedRes.imageUrl,
+        imagePath:  parsedRes.imagePath
       };
       
       // create place
@@ -92,7 +93,7 @@ export const getPlaces = () => {
     .then(token => {
       return fetch(`${ENTRY_POINT}/places.json?auth=${token}`)
     })
-    .then(res => {
+    .then(res => { 
       if (res.ok) {
         return res.json()
       } else {
@@ -100,10 +101,13 @@ export const getPlaces = () => {
       }
     })
     .then(parsedRes => {
-      if (parsedRes.error) {
+      if (!parsedRes) {
+        alert('Empty, add some places!');
+      } else if (parsedRes.error) {
+        console.log(parsedRes.error) 
         alert('Something bad happened!');
-        console.log(err)
       }
+      
       const places = [];
       for(let key in parsedRes) {
         places.push({
