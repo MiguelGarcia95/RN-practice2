@@ -52,8 +52,7 @@ export const authStoreToken = (token, expiresIn, refreshToken) => {
   return dispatch => {
     dispatch(authSetToken(token));
     const now = new Date();
-    const expiryDate = now.getTime() + 20 * 1000;
-    // const expiryDate = now.getTime() + expiresIn * 1000;
+    const expiryDate = now.getTime() + expiresIn * 1000;
     AsyncStorage.setItem("p:auth:token", token);
     AsyncStorage.setItem("p:auth:refreshToken", refreshToken);
     AsyncStorage.setItem("p:auth:expiryDate", expiryDate.toString());
@@ -99,8 +98,8 @@ export const authGetToken = () => {
         resolve(token);
       }
     });
-    promise.catch(err => {
-      AsyncStorage.getItem("p:auth:refreshToken")
+    return promise.catch(err => {
+      return AsyncStorage.getItem("p:auth:refreshToken")
         .then(refreshToken => {
           console.log(refreshToken)
           return fetch(`${AUTH_REFRESH_TOKEN}`, {
@@ -116,13 +115,19 @@ export const authGetToken = () => {
           if (parsedRes.id_token) {
             console.log('refresh worked'); 
             dispatch(authStoreToken(parsedRes.id_token, parsedRes.expires_in, parsedRes.refresh_token))
+            return parsedRes.id_token;
           } else {
             dispatch(authClearStorage())
           }
         })
-      
-    });
-    return promise;
+    })
+    .then(token => {
+      if (!token) {
+        throw(new Error());
+      } else {
+        return token;
+      }
+    })
   }
 }
 
@@ -133,6 +138,8 @@ export const authAutoSignIn = () =>{
         startMainTabs();
       })
       .catch(err => console.log('Failed to fetch token!'))
+
+    // dispatch(authClearStorage())
   }
 }
 
