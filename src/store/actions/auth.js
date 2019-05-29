@@ -78,9 +78,19 @@ export const authGetToken = () => {
               reject();
               return;
             }
-            dispatch(authSetToken(tokenFromStorage));
-            resolve(tokenFromStorage);
+            return AsyncStorage.getItem('p:auth:expiryDate')
           }) 
+          .then(expiryDate => {
+            const parsedExpiryDate = Date.parse(expiryDate);
+            const now = new Date();
+            if (parsedExpiryDate > now) {
+              dispatch(authSetToken(tokenFromStorage));
+              resolve(tokenFromStorage);
+            } else {
+              reject();
+            }
+
+          })
           .catch(err => reject())
       } else {
         resolve(token);
