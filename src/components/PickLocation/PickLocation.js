@@ -5,17 +5,36 @@ import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import ButtonWithBackground from '../UI/ButtonWithBackground/ButtonWithBackground';
 
 class PickLocation extends Component {
-  state = {
-    focusedLocation: {
-      latitude: 37.7900352,
-      longitude: -122.4013726,
-      latitudeDelta: 0.0122,
-      longitudeDelta: 
-        Dimensions.get('window').width / 
-        Dimensions.get('window').height * 
-        0.0122,
-    },
-    locationChosen: false,
+  // state = {
+  //   focusedLocation: {
+  //     latitude: 37.7900352,
+  //     longitude: -122.4013726,
+  //     latitudeDelta: 0.0122,
+  //     longitudeDelta: 
+  //       Dimensions.get('window').width / 
+  //       Dimensions.get('window').height * 
+  //       0.0122,
+  //   },
+  //   locationChosen: false,
+  // }
+
+  componentWillMount() {
+    this.reset();
+  }
+
+  reset = () => {
+    this.setState({
+      focusedLocation: {
+        latitude: 37.7900352,
+        longitude: -122.4013726,
+        latitudeDelta: 0.0122,
+        longitudeDelta: 
+          Dimensions.get('window').width / 
+          Dimensions.get('window').height * 
+          0.0122,
+      },
+      locationChosen: false,
+    })
   }
 
   pickLocationHandler = event => {

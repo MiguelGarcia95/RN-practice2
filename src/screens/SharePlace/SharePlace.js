@@ -18,26 +18,26 @@ class SharePlaceScreen extends Component {
     navBarButtonColor: 'orange'
   }
 
-  state = {
-    controls: {
-      placeName: {
-        value: '',
-        touched: false,
-        valid: false,
-        validationRules: {
-          minLength: 2
-        }
-      },
-      location: {
-        value: null,
-        valid: false,
-      },
-      image: {
-        value: null,
-        valid: false,
-      }
-    },
-  }
+  // state = {
+  //   controls: {
+  //     placeName: {
+  //       value: '',
+  //       touched: false,
+  //       valid: false,
+  //       validationRules: {
+  //         minLength: 2
+  //       }
+  //     },
+  //     location: {
+  //       value: null,
+  //       valid: false,
+  //     },
+  //     image: {
+  //       value: null,
+  //       valid: false,
+  //     }
+  //   },
+  // }
 
   constructor(props) {
     super(props);
@@ -93,6 +93,7 @@ class SharePlaceScreen extends Component {
     )
     this.reset();
     this.imagePicker.reset();
+    this.locationPicker.reset();
     Keyboard.dismiss();
   }
 
@@ -176,7 +177,10 @@ class SharePlaceScreen extends Component {
             ref={ref => this.imagePicker = ref} 
           />
 
-          <PickLocation onLocationPick={this.locationPickedHanlder} />
+          <PickLocation 
+            onLocationPick={this.locationPickedHanlder} 
+            ref={ref => this.locationPicker = ref}
+          />
 
           <DefaultInput 
             style={styles.input} 
