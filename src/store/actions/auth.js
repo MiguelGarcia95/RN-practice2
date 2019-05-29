@@ -4,6 +4,7 @@ import * as actionTypes from './actionTypes';
 import {AUTH_APIKEY, AUTH_ENTRY, AUTH_REFRESH_TOKEN} from '../../../env';
 import {uiStartLoading, uiStopLoading} from './index';
 import startMainTabs from '../../screens/MainTabs/startMainTabs';
+import App from '../../../App';
 
 export const tryAuth = (authData, authMode) => {
   return dispatch => {
@@ -138,7 +139,7 @@ export const authAutoSignIn = () =>{
         startMainTabs();
       })
       .catch(err => console.log('Failed to fetch token!'))
-
+    // For Testing
     // dispatch(authClearStorage())
   }
 }
@@ -147,5 +148,22 @@ export const authClearStorage = () => {
   return dispatch => {
     AsyncStorage.removeItem('p:auth:token');
     AsyncStorage.removeItem('p:auth:expiryDate');
+    return AsyncStorage.removeItem('p:auth:refreshToken');
+  }
+}
+
+export const authLogout = () => {
+  return dispatch => {
+    dispatch(authClearStorage())
+      .then(() => {
+        App();
+      })
+    dispatch(authRemoveToken());
+  }
+}
+
+export const authRemoveToken = () => {
+  return {
+    type: actionTypes.AUTH_REFRESH_TOKEN
   }
 }
