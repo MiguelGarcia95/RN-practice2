@@ -63,6 +63,7 @@ exports.storeImage = functions.https.onRequest((request, response) => {
                 encodeURIComponent(file.name) + 
                 "?alt=media&token=" +
                 uuid,
+              imagePath:  "/places/" + uuid + ".jpg",
             });
           } else {
             console.log(err);
