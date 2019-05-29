@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {View, StyleSheet, ScrollView, KeyboardAvoidingView, TouchableWithoutFeedback, ActivityIndicator} from 'react-native';
 import { Keyboard } from 'react-native';
 
-import {addPlace} from '../../store/actions';
+import {addPlace, startAddPlace} from '../../store/actions';
 
 import MainText from '../../components/UI/MainText/MainText';
 import HeadingText from '../../components/UI/HeadingText/HeadingText';
@@ -46,6 +46,13 @@ class SharePlaceScreen extends Component {
 
   componentWillMount() {
     this.reset();
+  }
+
+  componentDidUpdate() {
+    if (this.props.placeAdded) {
+      this.props.navigator.switchToTab({tabIndex: 0});
+      this.props.onStartAddPlace();
+    }
   }
 
   reset = () => {
@@ -222,13 +229,15 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    isLoading: state.ui.isLoading
+    isLoading: state.ui.isLoading,
+    placeAdded: state.places.placeAdded
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAddPlace: (placeName, location, image) => dispatch(addPlace(placeName, location, image))
+    onAddPlace: (placeName, location, image) => dispatch(addPlace(placeName, location, image)),
+    onStartAddPlace = () => dispatch(startAddPlace()),
   }
 }
 
