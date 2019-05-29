@@ -55,7 +55,7 @@ export const authStoreToken = (token, expiresIn, refreshToken) => {
     const expiryDate = now.getTime() + expiresIn * 1000;
     AsyncStorage.setItem("p:auth:token", token);
     AsyncStorage.setItem("p:auth:refreshToken", refreshToken);
-    AsyncStorage.setItem("p:auth:expiryDate", expiryDate.toString());
+    // AsyncStorage.setItem("p:auth:expiryDate", expiryDate.toString());
   }
 }
 
@@ -101,12 +101,13 @@ export const authGetToken = () => {
     promise.catch(err => {
       AsyncStorage.getItem("p:auth:refreshToken")
         .then(refreshToken => {
-          return fetch(`${AUTH_REFRESH_TOKEN}${AUTH_APIKEY}`, {
+          console.log(refreshToken)
+          return fetch(`${AUTH_REFRESH_TOKEN}`, {
             method: 'POST',
             headers: {
-              "ContentType": "application/x-www-form-urlencoded"
+              "Content-Type": "application/x-www-form-urlencoded"
             },
-            body: "grant_type='refresh_token'&refresh_token=" + refreshToken
+            body: "grant_type=refresh_token&refresh_token=" + refreshToken
           })
         })
         .then(res => console.log(res))
