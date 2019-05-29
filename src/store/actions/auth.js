@@ -41,17 +41,20 @@ export const authSignup = (authData, endpoint) => {
       if (parsedRes.error || !parsedRes.idToken) {
         alert('AUTH FAILED! TRY AGAIN!')
       } else {
-        dispatch(authStoreToken(parsedRes.idToken));
+        dispatch(authStoreToken(parsedRes.idToken, parsedRes.expiresIn));
         startMainTabs();
       }
     })
   }
 }
 
-export const authStoreToken = token => {
+export const authStoreToken = (token, expiresIn) => {
   return dispatch => {
     dispatch(authSetToken(token));
+    const now = new Date();
+    const expiryDate = now.getTime() + expiresIn * 1000;
     AsyncStorage.setItem("p:auth:token", token);
+    AsyncStorage.setItem("p:auth:expiryDate", expiryDate);
   }
 }
 
