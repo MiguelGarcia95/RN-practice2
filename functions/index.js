@@ -30,9 +30,12 @@ exports.storeImage = functions.https.onRequest((request, response) => {
       response.status(403).json({error: 'Unauthorized'});
       return;
     }
+
     let idToken;
     idToken = request.headers.authorization.split("Bearer ")[1];
-    admin.auth().verifyIdToken(idToken)
+
+    admin.auth()
+      .verifyIdToken(idToken)
       .then(decodedToken => {
         const body = JSON.parse(request.body);
         fs.writeFileSync("/tmp/uploaded-image.jpg", body.image, "base64", err => {
@@ -42,7 +45,7 @@ exports.storeImage = functions.https.onRequest((request, response) => {
         const bucket = gcs.bucket("my-project-rn-te-1558941296674.appspot.com");
         const uuid = UUID();
     
-        bucket.upload("/tmp/uploaded-image.jpg", {
+        return bucket.upload("/tmp/uploaded-image.jpg", {
           uploadType: "media",
           destination: "/places/" + uuid + ".jpg",
           metadata: {
