@@ -164,6 +164,6 @@ export const authLogout = () => {
 
 export const authRemoveToken = () => {
   return {
-    type: actionTypes.AUTH_REFRESH_TOKEN
+    type: actionTypes.AUTH_REMOVE_TOKEN
   }
 }
