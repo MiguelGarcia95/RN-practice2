@@ -1,4 +1,4 @@
-import {AsyncStorage} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import * as actionTypes from './actionTypes';
 import {AUTH_APIKEY, AUTH_ENTRY} from '../../../env';
