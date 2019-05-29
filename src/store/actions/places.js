@@ -49,6 +49,9 @@ export const addPlace = (placeName, location, image) => {
     .then(parsed => {
       console.log(parsed);
       dispatch(uiStopLoading());
+
+      // NOT OPTIMAL
+      dispatch(getPlaces());
     })
     .catch(err => {
       console.log(err);
