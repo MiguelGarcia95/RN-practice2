@@ -1,9 +1,10 @@
 import * as actionTypes from './actionTypes';
-import {ENTRY_POINT} from '../../../env';
+import {ENTRY_POINT, STORE_IMAGE_URL} from '../../../env';
 import {uiStartLoading, uiStopLoading, authGetToken} from './index';
 
 export const addPlace = (placeName, location, image) => {
   return dispatch => {
+    let authToken;
     dispatch(uiStartLoading());
 
     dispatch(authGetToken())
@@ -11,12 +12,16 @@ export const addPlace = (placeName, location, image) => {
       alert("No Valid Token Found");
     })
     .then(token => {
-    // POST call to firebase storeImage function
-      return fetch('https://us-central1-my-project-rn-te-1558941296674.cloudfunctions.net/storeImage', {
+      authToken = token;
+      // POST call to firebase storeImage function
+      return fetch(`${STORE_IMAGE_URL}`, {
         method: 'POST',
         body: JSON.stringify({
           image: image.base64
-        })
+        }),
+        headers: {
+          "Authorization": "Bearer " + authToken
+        }
       })
     })
     .catch(err => {
@@ -35,7 +40,7 @@ export const addPlace = (placeName, location, image) => {
       };
       
       // create place
-      return fetch(`${ENTRY_POINT}/places.json`, {
+      return fetch(`${ENTRY_POINT}/places.json?auth=${authToken}`, {
         method: "POST",
         body: JSON.stringify(placeData)
       })
