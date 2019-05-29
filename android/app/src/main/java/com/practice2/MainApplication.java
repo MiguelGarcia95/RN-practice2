@@ -28,7 +28,6 @@ public class MainApplication extends NavigationApplication {
   //   protected List<ReactPackage> getPackages() {
   //     return Arrays.<ReactPackage>asList(
   //         new MainReactPackage(),
-            new AsyncStoragePackage(),
   //         new VectorIconsPackage()
   //     );
   //   }
@@ -63,7 +62,8 @@ public class MainApplication extends NavigationApplication {
 		return Arrays.<ReactPackage>asList(
       new VectorIconsPackage(),
       new MapsPackage(),
-      new ImagePickerPackage()
+      new ImagePickerPackage(),
+      new AsyncStoragePackage()
 		);
 	}
 

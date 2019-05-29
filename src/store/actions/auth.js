@@ -50,7 +50,7 @@ export const authSignup = (authData, endpoint) => {
 
 export const authStoreToken = token => {
   return dispatch => {
-    dispatch(authSetToken(toke));
+    dispatch(authSetToken(token));
     AsyncStorage.setItem("p:auth:token", token);
   }
 }
@@ -70,7 +70,6 @@ export const authGetToken = () => {
       const token = getState().auth.token;
       if (!token) {
         AsyncStorage.getItem("p:auth:token")
-          .catch(err => reject())
           .then(tokenFromStorage => {
             if (!tokenFromStorage) {
               reject();
@@ -79,7 +78,7 @@ export const authGetToken = () => {
             dispatch(authSetToken(tokenFromStorage));
             resolve(tokenFromStorage);
           }) 
-        reject();      
+          .catch(err => reject())
       } else {
         resolve(token);
       }
